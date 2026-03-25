@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Florida Democratic Party — Charter &amp; Bylaws (as amended March 15, 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D2653;
+    --navy-mid: #1A3D7A;
+    --blue: #1E56A0;
+    --blue-light: #D9E6F7;
+    --blue-pale: #EEF4FC;
+    --gold: #B8881C;
+    --gold-light: #FDF3DC;
+    --sidebar-w: 296px;
+    --header-h: 56px;
+    --font-body: 'EB Garamond', Georgia, serif;
+    --font-ui: 'Inter', system-ui, sans-serif;
+    --text: #111;
+    --gray-100: #F5F5F3;
+    --gray-200: #E6E4E0;
+    --gray-400: #999;
+    --radius: 5px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--text); background: #F7F6F2; line-height: 1.85; }
+
+  /* progress */
+  #prog { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 9999; transition: width .08s linear; }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh;
+    background: var(--navy); display: flex; flex-direction: column;
+    z-index: 500; transition: transform .26s cubic-bezier(.4,0,.2,1);
+    box-shadow: 2px 0 16px rgba(0,0,0,.18);
+  }
+  .sb-head { padding: 20px 18px 14px; border-bottom: 1px solid rgba(255,255,255,.09); flex-shrink: 0; }
+  .sb-head .stars { color: var(--gold); font-size: 11px; letter-spacing: 6px; margin-bottom: 8px; }
+  .sb-head h1 { font-family: var(--font-body); font-size: 14.5px; font-weight: 700; color: #fff; line-height: 1.35; }
+  .sb-head .meta { font-family: var(--font-ui); font-size: 10px; color: rgba(255,255,255,.4); margin-top: 4px; letter-spacing: .05em; text-transform: uppercase; }
+
+  .sb-search { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,.07); flex-shrink: 0; }
+  .sb-search input {
+    width: 100%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 4px; padding: 6px 10px; font-family: var(--font-ui); font-size: 12px;
+    color: #fff; outline: none; transition: background .15s;
+  }
+  .sb-search input::placeholder { color: rgba(255,255,255,.32); }
+  .sb-search input:focus { background: rgba(255,255,255,.14); }
+
+  #sidebar-nav { flex: 1; overflow-y: auto; padding-bottom: 20px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.13) transparent; }
+  #sidebar-nav::-webkit-scrollbar { width: 3px; }
+  #sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.14); border-radius: 2px; }
+
+  .nav-label { font-family: var(--font-ui); font-size: 9.5px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: .12em; padding: 16px 18px 4px; }
+  nav ul { list-style: none; }
+  nav ul li a {
+    display: block; font-family: var(--font-ui); font-size: 11.5px;
+    color: rgba(255,255,255,.62); text-decoration: none;
+    padding: 5px 18px; border-left: 3px solid transparent;
+    transition: color .14s, background .14s, border-color .14s; line-height: 1.4;
+  }
+  nav ul li a:hover { color: #fff; background: rgba(255,255,255,.06); }
+  nav ul li a.active { color: #fff; background: rgba(30,86,160,.38); border-left-color: var(--gold); }
+
+  /* ── MOBILE HEADER ── */
+  #mob-header {
+    display: none; position: fixed; top: 0; left: 0; right: 0;
+    height: var(--header-h); background: var(--navy); z-index: 600;
+    align-items: center; padding: 0 14px; gap: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.28);
+  }
+  #hamburger { background: none; border: none; cursor: pointer; padding: 4px; display: flex; flex-direction: column; gap: 5px; align-items: center; }
+  #hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,.82); border-radius: 1px; transition: all .22s; transform-origin: center; }
+  #hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  #hamburger.open span:nth-child(2) { opacity: 0; }
+  #hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mob-title { font-family: var(--font-body); font-size: 14px; color: #fff; line-height: 1.3; }
+  .mob-title small { font-size: 9.5px; opacity: .5; display: block; }
+
+  #overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 490; opacity: 0; transition: opacity .26s; pointer-events: none; }
+  #overlay.show { opacity: 1; pointer-events: all; }
+
+  /* ── MAIN ── */
+  #main { margin-left: var(--sidebar-w); }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 44px 48px 80px; }
+
+  /* ── HERO ── */
+  #intro { margin-bottom: 36px; }
+  .doc-hero {
+    background: linear-gradient(140deg, #0D2653 0%, #1A3D7A 55%, #2258A5 100%);
+    border-radius: 8px; padding: 38px 38px 34px; margin-bottom: 20px; position: relative; overflow: hidden;
+  }
+  .doc-hero::after { content: ''; position: absolute; bottom: -70px; right: -30px; width: 250px; height: 250px; border-radius: 50%; background: rgba(255,255,255,.03); }
+  .doc-hero .stars { color: var(--gold); font-size: 12px; letter-spacing: 8px; margin-bottom: 12px; }
+  .doc-hero h2 { font-family: var(--font-body); font-size: 28px; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 10px; }
+  .doc-meta { font-family: var(--font-ui); font-size: 12.5px; color: rgba(255,255,255,.58); }
+
+  /* ── NOTICE BOX ── */
+  .notice-box {
+    background: var(--gold-light); border: 1px solid #D4A847;
+    border-left: 4px solid var(--gold); border-radius: var(--radius);
+    padding: 13px 17px; margin-bottom: 20px;
+    font-family: var(--font-ui); font-size: 13px; line-height: 1.65; color: #5C3A00;
+  }
+  .notice-box p { margin-bottom: 5px; }
+  .notice-box p:last-child { margin-bottom: 0; }
+
+  /* ── DOC PART HEADER ── */
+  .doc-part-header {
+    background: var(--navy); color: #fff;
+    font-family: var(--font-ui); font-size: 12px; font-weight: 700;
+    letter-spacing: .09em; text-transform: uppercase;
+    padding: 12px 20px; border-radius: var(--radius);
+    margin: 28px 0 6px;
+  }
+
+  /* ── SECTION ── */
+  .section { background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 5px; box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: box-shadow .16s; }
+  .section:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+
+  .sec-toggle { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 11px; padding: 13px 16px; text-align: left; transition: background .14s; border-radius: var(--radius); }
+  .sec-toggle:hover { background: var(--gray-100); }
+  .sec-toggle[aria-expanded="true"] { background: var(--blue-pale); border-radius: var(--radius) var(--radius) 0 0; }
+
+  .sec-num { flex-shrink: 0; min-width: 40px; height: 30px; border-radius: 4px; background: var(--navy); color: #fff; font-family: var(--font-ui); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; letter-spacing: .03em; padding: 0 5px; }
+  .sec-toggle[aria-expanded="true"] .sec-num { background: var(--blue); }
+
+  .sec-title { flex: 1; font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--navy); line-height: 1.35; }
+  .sec-toggle[aria-expanded="true"] .sec-title { color: var(--blue); }
+
+  .chevron { flex-shrink: 0; font-size: 13px; color: var(--gray-400); transition: transform .22s cubic-bezier(.4,0,.2,1); }
+  .sec-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+
+  /* ── SECTION BODY ── */
+  .sec-body { display: none; padding: 4px 26px 26px; border-top: 1px solid var(--gray-200); font-size: 16px; line-height: 1.85; }
+  .sec-body.open { display: block; }
+  .sec-body p { margin: 9px 0; color: var(--text); }
+  .sec-body p strong { font-weight: 700; }
+  .sec-body p em { font-style: italic; }
+  .sec-body p del { text-decoration: line-through; color: #888; }
+  .sec-body p u { text-decoration: underline; }
+
+  /* ── LISTS ── */
+  .sec-body ol[type="a"], .sec-body ol:not([type]), .sec-body ul {
+    margin: 10px 0 10px 2.2em; padding-left: .8em;
+  }
+  .sec-body ul { list-style-type: disc; }
+  .sec-body li { margin-bottom: 7px; }
+  .sec-body li p { margin: 0; }
+
+  /* ── BACK TO TOP ── */
+  #back-top { position: fixed; bottom: 26px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: #fff; border: none; cursor: pointer; font-size: 16px; box-shadow: 0 3px 10px rgba(0,0,0,.22); opacity: 0; transform: translateY(6px); transition: opacity .2s, transform .2s; z-index: 400; display: flex; align-items: center; justify-content: center; }
+  #back-top.show { opacity: 1; transform: translateY(0); }
+  #back-top:hover { background: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    #sidebar { transform: translateX(-100%); }
+    #sidebar.open { transform: translateX(0); box-shadow: 6px 0 24px rgba(0,0,0,.3); }
+    #mob-header { display: flex; }
+    #overlay { display: block; }
+    #main { margin-left: 0; padding-top: var(--header-h); }
+    .wrap { padding: 20px 16px 60px; }
+    .doc-hero { padding: 24px 20px 22px; }
+    .doc-hero h2 { font-size: 22px; }
+    #prog { top: var(--header-h); }
+    #back-top { bottom: 14px; right: 12px; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 14px 10px 50px; }
+    .sec-toggle { padding: 11px 11px; }
+    .sec-body { padding: 4px 13px 18px; }
+    .sec-num { min-width: 34px; font-size: 9px; }
+    .sec-title { font-size: 12px; }
+    .sec-body { font-size: 15px; }
+  }
+
+  /* ── SUBSECTION FORMATTING ── */
+
+  /* Top-level SECTION paragraphs get a top border rule */
+  .sec-body p.is-section {
+    border-top: 1px solid var(--gray-200);
+    padding-top: 14px;
+    margin-top: 18px;
+  }
+  .sec-body p.is-section:first-of-type,
+  .sec-body > p.is-section:first-child {
+    border-top: none;
+    padding-top: 6px;
+    margin-top: 6px;
+  }
+
+  /* SECTION label (e.g. SECTION 1. Name:) — bold blue label style */
+  .sec-body p.is-section > strong:first-child {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    margin-bottom: 4px;
+  }
+
+  /* Numbered subsection paragraphs (e.g. 1.1, 2.2.1, §4.1.3) */
+  .sec-body p.is-sub {
+    margin-left: 1.4em;
+    padding-left: 1em;
+    border-left: 2px solid var(--blue-light);
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* Deeper subsection paragraphs (e.g. 1.1.1, 2.2.1, 5.10.4.2) */
+  .sec-body p.is-deep {
+    margin-left: 2.6em;
+    padding-left: 1em;
+    border-left: 2px dashed var(--gray-200);
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* The bold label within a subsection (e.g. "§1.1 Automatic Members:") */
+  .sec-body p.is-sub > strong:first-child,
+  .sec-body p.is-deep > strong:first-child {
+    font-family: var(--font-ui);
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 3px;
+    letter-spacing: .02em;
+  }
+
+  /* Lists inside subsections should indent with their parent */
+  .sec-body p.is-sub + ol,
+  .sec-body p.is-sub + ul {
+    margin-left: 3em;
+  }
+  .sec-body p.is-deep + ol,
+  .sec-body p.is-deep + ul {
+    margin-left: 4.2em;
+  }
+
+  /* Continuations (plain paragraphs after a subsection head) */
+  .sec-body p.is-continuation {
+    margin-left: 1.4em;
+    padding-left: 1em;
+  }
+
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<aside id="sidebar" role="navigation" aria-label="Document navigation">
+  <div class="sb-head">
+    <div class="stars">&#9733; &#9733; &#9733;</div>
+    <h1>Florida Democratic Party<br>Charter &amp; Bylaws</h1>
+    <div class="meta">As amended March 15, 2026</div>
+  </div>
+  <div class="sb-search">
+    <input type="search" id="nav-search" placeholder="Search sections…" autocomplete="off" aria-label="Search sections">
+  </div>
+  <nav id="sidebar-nav">
+<div class="nav-label">The Charter</div><ul>
+<li><a href="#pre-preamble-2" class="nav-link">Preamble</a></li>
+<li><a href="#i-article-i-name-powers-and-general-policies" class="nav-link">ARTICLE I. NAME, POWERS, AND GENERAL POLICIES</a></li>
+<li><a href="#ii-article-ii-state-executive-committee" class="nav-link">ARTICLE II. STATE EXECUTIVE COMMITTEE</a></li>
+<li><a href="#iii-article-iii-central-committee" class="nav-link">ARTICLE III. CENTRAL COMMITTEE</a></li>
+<li><a href="#iv-article-iv-congressional-district-committees" class="nav-link">ARTICLE IV. CONGRESSIONAL DISTRICT COMMITTEES</a></li>
+<li><a href="#v-article-v-county-democratic-executive-committees" class="nav-link">ARTICLE V. COUNTY DEMOCRATIC EXECUTIVE COMMITTEES</a></li>
+<li><a href="#vi-article-vi-clubs-organizations-and-caucuses" class="nav-link">ARTICLE VI. CLUBS, ORGANIZATIONS, AND CAUCUSES</a></li>
+<li><a href="#vii-article-vii-state-conventions-gubernatorial-co" class="nav-link">ARTICLE VII. STATE CONVENTIONS & GUBERNATORIAL CONFERENCES</a></li>
+<li><a href="#viii-article-viii-amendments-bylaws-and-rules-byla" class="nav-link">ARTICLE VIII. AMENDMENTS, BYLAWS, AND RULES/BYLAWS</a></li>
+</ul>
+<div class="nav-label">The Bylaws</div><ul>
+<li><a href="#i-article-i-name-powers-and-general-policies-2" class="nav-link">ARTICLE I. NAME, POWERS, AND GENERAL POLICIES</a></li>
+<li><a href="#ii-article-ii-state-executive-committee-2" class="nav-link">ARTICLE II. STATE EXECUTIVE COMMITTEE</a></li>
+<li><a href="#iii-article-iii-central-committee-2" class="nav-link">ARTICLE III. CENTRAL COMMITTEE</a></li>
+<li><a href="#iv-article-iv-congressional-district-committees-2" class="nav-link">ARTICLE IV. CONGRESSIONAL DISTRICT COMMITTEES</a></li>
+<li><a href="#v-article-v-county-democratic-executive-committees-2" class="nav-link">ARTICLE V. COUNTY DEMOCRATIC EXECUTIVE COMMITTEES ("DEC")</a></li>
+<li><a href="#vi-article-vi-clubs-organizations-and-caucuses-2" class="nav-link">ARTICLE VI. CLUBS, ORGANIZATIONS, AND CAUCUSES</a></li>
+<li><a href="#vii-article-vii-state-conventions-gubernatorial-co-2" class="nav-link">ARTICLE VII. STATE CONVENTIONS & GUBERNATORIAL CONFERENCES</a></li>
+<li><a href="#viii-article-viii-amendments-bylaws-and-rules-byla-2" class="nav-link">ARTICLE VIII. AMENDMENTS, BYLAWS, AND RULES/BYLAWS</a></li>
+<li><a href="#ix-article-ix-code-of-conduct" class="nav-link">ARTICLE IX. CODE OF CONDUCT</a></li>
+<li><a href="#x-article-x-grievance-policy" class="nav-link">ARTICLE X. GRIEVANCE POLICY</a></li>
+<li><a href="#xi-article-xi-candidate-qualifying-for-presidentia" class="nav-link">ARTICLE XI. CANDIDATE QUALIFYING FOR PRESIDENTIAL PREFERENCE PRIMARY</a></li>
+</ul>
+<div class="nav-label">Attachments</div><ul>
+<li><a href="#a2-attachment-2-loyalty-oath" class="nav-link">Attachment 2 — Loyalty Oath</a></li>
+<li><a href="#a3-attachment-3-form-of-democratic-presidential-ca" class="nav-link">Attachment 3 — Form of Democratic Presidential Candidate Oath</a></li>
+<li><a href="#a4-code-of-conduct-for-the-florida-democratic-part" class="nav-link">Code of Conduct for the Florida Democratic Party</a></li>
+<li><a href="#ta-transition-addendum" class="nav-link">Transition Addendum</a></li>
+</ul>
+</nav>
+</aside>
+
+<div id="overlay"></div>
+
+<header id="mob-header">
+  <button id="hamburger" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mob-title">
+    Florida Democratic Party
+    <small>Charter &amp; Bylaws &middot; Mar 15, 2026</small>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+<section id="intro">
+<div class="doc-hero">
+  <div class="stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+  <h2>The Charter and Bylaws<br>of the Florida Democratic Party</h2>
+  <p class="doc-meta">State Chair: <strong>Nikki Fried</strong> &nbsp;&middot;&nbsp; As amended on March 15, 2026</p>
+</div>
+<div class="notice-box">
+<p>This document contains amendments approved by the State Executive</p>
+<p>Committee at its meeting on March 15, 2026. Included with these</p>
+<p>amendments is a "Transition Addendum" that specifies the transition</p>
+<p>and effective dates of the changes.</p>
+<p>Amendments effective on March 15, 2026, are insertions shown in red</p>
+<p>[example].</p>
+<p>Amendments effective on January 1, 2027, are insertions shown in blue</p>
+<p>[example].</p>
+</div>
+</section>
+<div class="doc-part-header" id="doc-the-charter-of-the-florida-democratic-party">THE CHARTER OF THE FLORIDA DEMOCRATIC PARTY</div>
+<div class="section" id="pre-preamble-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">PRE</span>
+    <span class="sec-title">PREAMBLE</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p>We, the Democrats of Florida, united in common purpose, hereby dedicate ourselves to the principles which have historically sustained our Party. We recognize that a political party which wishes to lead must listen to those it would lead, that a party which asks for the people’s trust must prove that it trusts the people, and that a party which hopes to call forth the best the state and nation can achieve must embody the best of the state’s and nation’s heritage and traditions.</p>
+<p>The Florida Democratic Party, and all its components, shall encourage voter registration without discrimination on grounds of race, color, creed, sex, age, religion, economic status, ethnic identity, national origin, disability or sexual orientation or gender identity and expression.</p>
+<p>What we seek for our state and nation we hope for all people: individual freedom in the framework of a just society; political freedom in the framework of meaningful participation by all citizens.</p>
+  </div>
+</div>
+<div class="section" id="i-article-i-name-powers-and-general-policies">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">I</span>
+    <span class="sec-title">ARTICLE I. NAME, POWERS, AND GENERAL POLICIES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Name:</strong> The name of this political party shall be the Florida Democratic Party.</p>
+<p><strong>SECTION 2. Governing Body:</strong> The governing body of the Florida Democratic Party shall be the Democratic Executive Committee of Florida which shall be known as the State Executive Committee.</p>
+<p><strong>SECTION 3. Powers:</strong> The State Executive Committee has supervisory power and jurisdiction over Florida Democratic Party affairs throughout the State, including Party officers, Party candidates, elected Democratic officials, Party committees, commissions, and clubs. It shall set policy and prescribe and enforce rules and regulations concerning Party affairs. The Florida Democratic Party shall have all powers granted to a Florida not-for-profit corporation as prescribed by Florida Statutes, and which may be changed from time to time.</p>
+<p><strong>SECTION 4. General Policies:</strong> The following shall be general provisions of the Florida Democratic Party:</p>
+<p><strong>4.1 Participation:</strong></p>
+<p><strong>4.1.1 Noticed Meetings:</strong> Meetings of the Florida Democratic Party and its components shall be open to all members of the Democratic Party regardless of race, color, creed, sex, age, religion, economic status, ethnic identity, national origin, disability, sexual orientation or gender identity and expression. No vote shall be taken by secret ballot. Adequate records shall be kept of all meetings.</p>
+<p>In limited circumstances, closed sessions of only the State Executive or the Central Committee may be authorized by an adopted policy of the respective committee, solely for purposes requiring confidentiality in the following cases:</p>
+<ol type="a">
+<li><p>To confer with legal counsel regarding pending or potential litigation or settlement strategy;</p></li>
+<li><p>To address grievance or disciplinary matters;</p></li>
+<li><p>To consider matters involving cybersecurity, physical safety, or other sensitive security concerns, or</p></li>
+<li><p>As part of a mediation process pursuant to Article XI, Section 3.</p></li>
+</ol>
+<p>No closed session shall be held unless the State Executive or Central Committee approves a standing policy or individual motion by a two-thirds (2/3) of the votes eligible to be cast by the State Executive Committee present and voting. Attendance at a closed session shall be limited to members of the State Executive, Central Committee, party staff, and authorized persons whose presence is necessary to the matter under discussion. No vote shall be taken by secret ballot in any closed session, and minutes shall be taken of the proceedings. The meeting notice shall state that a closed session will be held and cite this provision as authority.</p>
+<p><strong>4.1.2 Membership:</strong> No tests for membership in, nor oaths of loyalty to, the Florida Democratic Party shall be required or used which have the effect of requiring prospective or current members of the Florida Democratic Party to acquiesce in, condone, or support discrimination on the grounds of race, color, creed, sex, age, religion, economic status, ethnic identity, national origin, disability, sexual orientation or gender identity and expression.</p>
+<p><strong>4.1.3 Fee Limitation:</strong> No qualification fee, in excess of the amount provided by law, may be charged for any office of the Florida Democratic Party.</p>
+<p><strong>SECTION 5. Publication:</strong> The Florida Democratic Party shall publicize the procedures and qualifications for selection of Florida Democratic Party officers, representatives, and/or convention delegates. All meeting notices and publications of the Florida Democratic Party shall be disseminated in a manner that shall allow adequate time for full participation by all interested Florida Democrats.</p>
+<p><strong>SECTION 6. Loyalty Oath:</strong> Members of the Florida Democratic Party, including Party officers, Party candidates, elected Democratic officials, and members of Party committees, commissions, and clubs, shall execute by written oath or affirmation the loyalty oath in the form included in the Bylaws of the Florida Democratic Party before taking office, or, in the case of a candidate running for the Party’s nomination, at the time of qualifying. Said oath or affirmation may be amended in the same manner as provided for amending the Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 7. Campaign Support:</strong> The Florida Democratic Party shall assist in the nomination and election of Democratic candidates for office.</p>
+<p><strong>SECTION 8. Policy Statements:</strong> Only the State Executive Committee and/or the Central Committee of the Florida Democratic Party shall adopt and promote statements of policy for the Florida Democratic Party.</p>
+<p><strong>SECTION 9. Assistance to National and Local Parties:</strong> The Florida Democratic Party shall assist the Democratic National Committee and county Democratic Executive Committees with voter education and in the election of Democratic candidates to public office.</p>
+<p><strong>SECTION 10. Rules of Procedure:</strong> The Florida Democratic Party shall establish rules of procedure to afford all members of the Party including official Party committees, commissions, and clubs, full, timely, and equal opportunities to participate in decisions concerning the selection of Democratic candidates, the formulation of policy, and the conduct of other Florida Democratic Party affairs. These Rules of Procedure shall be adopted as provided for in Article VIII Section 3 of this Charter and shall be incorporated into the general rules of the Party.</p>
+<p><strong>10.1 Proxies:</strong> Proxies for Florida Democratic Party meetings shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>10.2 Quorums:</strong> Quorums for Florida Democratic Party meetings shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>10.3 Budget and Finance:</strong> The budget for the Florida Democratic Party and the fiduciary responsibilities of its governing committees and officers shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>10.4 Replacement of Nominated Democratic Party Candidates for Public Office:</strong> The procedures for the selection of candidates to replace deceased or retiring Florida Democratic Party candidates for federal, state or local office following the primary nominating process shall be as specified in Rules adopted by the State Executive Committee.</p>
+<p><strong>SECTION 11. Party Objectives:</strong> The Florida Democratic Party shall work with Democratic elected officials at all levels to achieve its objectives.</p>
+<p><strong>SECTION 12. Code of Political Ethics:</strong> It shall be the responsibility of the Florida Democratic Party to encourage and support codes of political ethics that embody substantive rules of ethical guidance for elected officials, and employees in federal, state, and local governments. It shall be the responsibility of the Florida Democratic Party to assure that elected officials conduct themselves, at all times, in a manner that reflects creditably upon the office they serve, do not use their office to gain special privileges or benefits, and refrain from acting in their official capacities when their independent judgment would be adversely affected by personal interests or duties.</p>
+<p><strong>SECTION 13. Endorsement:</strong> Endorsement by county Democratic Executive Committees shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 14. Code of Conduct Authorization:</strong> It shall be the responsibility of the Florida Democratic Party to adopt and maintain a Code of Conduct applicable to all its components. The State Executive Committee shall adopt such a Code by majority vote. The code shall be incorporated by an Addendum to the bylaws and shall be enforceable under the procedures therein. Amendments to the Code of Conduct shall be reviewed by the FDP Rules Committee and approved by a majority vote of the State Executive Committee.</p>
+<p><strong>SECTION 15. Grievance Policy:</strong> A Grievance Policy for the State Executive &amp; Central Committees, county Democratic Executive Committees, and Democratic clubs shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+  </div>
+</div>
+<div class="section" id="ii-article-ii-state-executive-committee">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">II</span>
+    <span class="sec-title">ARTICLE II. STATE EXECUTIVE COMMITTEE</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Creation and Authority:</strong> There shall be a State Executive Committee responsible for discharging Florida Democratic Party affairs within the state. The State Executive Committee shall have authority to raise, receive, accept, solicit, borrow, maintain, and expend such funds as may be provided from any source not prohibited by law. The State Chair shall not borrow any funds on behalf of the Florida Democratic Party without prior approval of the Central Committee. The State Executive Committee may prescribe and enforce sanctions for violation of Party allegiance, Party rules, or any other lawful mandate by anyone within its jurisdiction. Such sanctions may include removal from Party office, Party nomination, or committee membership. Such action shall assure the accused party a fair hearing.</p>
+<p><strong>SECTION 2. Membership:</strong> The State Executive Committee shall be composed of state committee members elected from each county, Democratic National Committee members from Florida, and automatic and appointed members of the Central Committee, including those automatic members as may be provided by Florida Statutes and which may be changed from time to time.</p>
+<p><strong>2.1 State Committee Members:</strong> Each county's apportionment of elected state committee members shall be based on a number equal to its combined percentages of the total state Democratic registration as of October 31 of the most recent presidential election year and the average of the total state Democratic vote for Governor, the total state Democratic vote for President, and the total state Democratic vote for United States Senator in the most recent election.</p>
+<p><strong>2.1.1</strong> Four hundred (400) members shall be apportioned to the counties on the basis set forth above by using the method of equal proportions, provided that each county shall have at least two such members.</p>
+<p><strong>2.1.2</strong> The state committee members from each county shall be elected at county Democratic Executive Committee organizational meetings or, at the county's option, a separate meeting no later than seven days after the organizational meeting. At least two of the county's state committee members who shall be of different genders shall be elected from among those members who are elected from the precinct or district level. The term of office shall be four (4) years. The respective County Executive Committee shall fill any vacancy occurring in the position of county executive committee chair or state committee member.</p>
+<p><strong>2.1.3</strong> The county's state committee members shall be equally divided between men and women (determined by gender self-identification), but where this is not practical the variance shall not be greater than one (1). In the case of gender non-binary committee members, they shall not be counted as either a male or female, and the remainder of the members shall be equally divided.</p>
+<p><strong>2.1.4</strong> To encourage full participation by all Democrats, with particular concern for groups historically under-represented in the Democratic Party's affairs, each county Democratic Executive Committee shall develop and implement diversity outreach and inclusion programs based on the registered Democrats in the county, including recruitment, education and training, in order to achieve full participation and diversity by such groups in its Democratic Executive Committee and among its state committee members. Such programs shall include specific goals for groups not limited to Blacks, Hispanics, Native Americans, Asian Americans and Pacific Islanders, as well as members of the LGBTQ+ community, people with disabilities, youth, and veterans. While goals should be used to achieve diversity outreach and inclusion, in no event may such participation be accomplished directly or indirectly by the use or imposition of quotas.</p>
+<p><strong>SECTION 3. Officers:</strong> The State Executive Committee, at its organizational meeting, shall elect a Chair, a First Vice Chair, who shall not be of the same gender as the Chair, a Secretary, and a Treasurer, who shall not be of the same gender as the Secretary, each of whom shall be a current Florida Democrat elected from among the county chairs, county first vice chairs, state committee members, state caucus presidents, Democratic National Committee members, a member of the State or National Party finance committees, or any individual who has held any of the above titles within the previous eight (8) years. Additionally, any person who has served but is not currently serving as a Democratic elected official within the last eight (8) years shall also be eligible. In addition, the State Chair shall appoint up to four (4) other Vice Chairs who shall serve in addition to the First Vice Chair elected by the State Executive Committee. To ensure that the diversity of our Party is fully recognized, one of the Vice Chairs appointed by the Chair shall be of a different race or ethnic background from the Chair. Other officers may be prescribed in the Bylaws of the Florida Democratic Party. The term of office for those officers elected by the State Executive Committee shall be four (4) years or until respective successors are elected and for those officers appointed by the State Chair from the time of appointment until the end of the State Chair's term.</p>
+<p><strong>SECTION 4. Meetings:</strong> The State Executive Committee shall hold an organizational meeting called by the Chair of the preceding committee, within thirty (30) days after said committee members take office. Only committee members, automatic members, preceding officers and Democratic National Committee members shall be eligible to vote at the Organizational Meeting. If a member holds more than one office they shall vote only one vote. The State Executive Committee shall meet at least twice every year or at the call of the State Chair.</p>
+<p><strong>SECTION 5. Voting:</strong> Voting by members of the State Executive Committee shall be one (1) vote for each member. Unless otherwise provided, a majority of those present and voting shall be required for approval of a motion, action or choice. In the event of a tie vote, the State Chair shall determine the outcome.</p>
+<p><strong>SECTION 6. Committees:</strong> Standing committees of the Florida Democratic Party shall be as set forth in the Bylaws of the Florida Democratic Party. The State Chair as deemed necessary might appoint special committees.</p>
+<p><strong>6.1 Judicial Council:</strong> There shall be a Judicial Council of the Florida Democratic Party, appointed by the State Chair, the function of which shall be to adjudicate disputes arising out of the interpretation or application of the Charter of the Florida Democratic Party, the Bylaws of the Florida Democratic Party, rules or policies of the Florida Democratic Party and its respective county executive committees, or Florida Statutes.</p>
+<p><strong>SECTION 7. Democratic National Committee Members:</strong> Democratic National Committee members shall be elected by the State Executive Committee at a meeting held during the calendar year of the Democratic National Convention and prior to the National Convention, consistent with the rules of the Democratic National Committee. At least thirty (30) days’ notice of the meeting and election shall be provided.</p>
+  </div>
+</div>
+<div class="section" id="iii-article-iii-central-committee">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">III</span>
+    <span class="sec-title">ARTICLE III. CENTRAL COMMITTEE</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Creation and Authority:</strong> There shall be a Central Committee which shall be the operating and managing committee of the State Executive Committee. The Central Committee shall administer, supervise, and control the policies and affairs of the State Executive Committee. It shall have the authority to make decisions between meetings of the State Executive Committee which are consistent with the Charter and Bylaws of the Florida Democratic Party and/or the Rules and policies set forth by the State Executive Committee. The Central Committee shall operate in accordance with the Charter and Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 2. Membership:</strong> Membership shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 3. Officers:</strong> Officers of the State Executive Committee shall be the officers of the Central Committee.</p>
+<p><strong>SECTION 4. Meetings:</strong> The Central Committee shall meet at least once every six (6) months or at the call of the State Chair.</p>
+<p><strong>SECTION 5. Voting:</strong> Voting by members of the Central Committee shall be one (1) vote for each member.</p>
+  </div>
+</div>
+<div class="section" id="iv-article-iv-congressional-district-committees">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">IV</span>
+    <span class="sec-title">ARTICLE IV. CONGRESSIONAL DISTRICT COMMITTEES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Creation and Authority:</strong> There shall be a Congressional District Committee within each congressional district in the State responsible for discharging such duties as may be specifically delegated by the Florida Democratic Party or by Florida law.</p>
+<p><strong>SECTION 2. Membership:</strong> Membership shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 3. Officers:</strong> Officers shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+  </div>
+</div>
+<div class="section" id="v-article-v-county-democratic-executive-committees">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">V</span>
+    <span class="sec-title">ARTICLE V. COUNTY DEMOCRATIC EXECUTIVE COMMITTEES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Creation and Authority:</strong> There shall be a county Democratic Executive Committee within each county in the state responsible for discharging Florida Democratic Party affairs within the county.</p>
+<p><strong>SECTION 2. Membership:</strong> Membership shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 3. Officers:</strong> County Democratic Executive Committees, at their organizational meetings, shall elect a chair, a vice chair, who shall be of the opposite sex from the chair, a secretary, and a treasurer, each of whom shall be elected from among the elected membership of the county Democratic Executive Committee. Other officers may be prescribed in a county Democratic Executive Committee’s bylaws. The term of office shall be for a maximum of four (4) years; however, the bylaws of a county Democratic Executive Committee may provide for lesser terms of office.</p>
+<p><strong>3.1 Duties of the State Committee Members:</strong> The duties of the state committee members are to attend meetings of the Florida Democratic State Executive Committee and any other state party committees on which they serve and to represent the county's Democratic voters on matters before the state party. At least two of the county's state committee members of different genders shall serve as liaison between the Florida Democratic Party and the county DEC; liaison between the county DEC and the clubs; serve as members of the State Executive Committee and county DEC Steering Committee; serve as members of the county DEC Campaign Committee and members of other committees as designated by the DEC Charter and Bylaws. Counties with more than two state committee members may designate at least two different state committee members of different genders for the DEC roles described above.</p>
+<p><strong>SECTION 4. Meetings:</strong> County Democratic Executive Committees shall meet at least once every calendar quarter with such calendar quarter beginning in January of each year.</p>
+<p><strong>SECTION 5. Policy and Procedure:</strong> Each County Democratic Executive Committee shall submit a copy of its bylaws and any amendments thereto to the State Chair and the Rules Committee Chair. The State Chair, with the approval of the Central Committee, may develop guidelines and suggested bylaws for promoting uniformity among county Democratic Executive Committees. County Democratic Executive Committee bylaws shall be in compliance with Florida Statutes and the Charter and Bylaws of the Florida Democratic Party. The FDP Charter and Bylaws and the Florida Statutes shall prevail in the case of a conflict with a county's bylaws and shall govern in all cases to which the county's bylaws do not speak.</p>
+<p><strong>SECTION 6. Finances:</strong> County Democratic Executive Committees receiving party assessment fees shall spend same assisting in the election of Democrats. County Democratic Executive Committee audits shall be subject to review by the Florida Democratic Party concerning the appropriateness of the county Democratic Executive Committee’s expenditures. County Democratic Executive Committee budget requirements shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+<p><strong>SECTION 7. Penalties:</strong> The State Chair, at the direction of the Central Committee, shall be responsible for the imposition of penalties which shall be as set forth herein.</p>
+<p><strong>7.1 Compliance:</strong> A county Democratic Executive Committee found in noncompliance with the Charter and Bylaws of the Florida Democratic Party or Florida Statutes may be notified by certified mail of such noncompliance by the State Chair. Said county Democratic Executive Committee shall have thirty (30) days to comply.</p>
+<p><strong>7.2 Suspension and Removal:</strong> County Democratic Executive Committees or officers may be suspended by the State Chair for failure to comply within thirty (30) days. The Central Committee shall review the actions of the State Chair at the next meeting of the Central Committee and either affirm the suspension and remove the officer or county Democratic Executive Committee upon a two-thirds (2/3) vote of the entire membership of the Central Committee, or, in the alternative, reinstate said officer or county Democratic Executive Committee. A county Democratic Executive Committee officer who has been removed from office shall not be eligible to hold any county Democratic Executive Committee office for the remainder of said term.</p>
+  </div>
+</div>
+<div class="section" id="vi-article-vi-clubs-organizations-and-caucuses">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">VI</span>
+    <span class="sec-title">ARTICLE VI. CLUBS, ORGANIZATIONS, AND CAUCUSES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Charters:</strong> Charters of clubs, organizations, and/or caucuses using the name Democrat, Democratic, or derivative thereof, other than those chartered by the Democratic National Committee, shall be approved by the Central Committee which shall retain continuing jurisdiction. Clubs shall be directly accountable to the Democratic Executive Committee in the county of charter. Local caucus chapters shall be directly accountable to the State Caucus under which they were chartered. Violation of the Charter or Bylaws of the Florida Democratic Party or Party policy by a club, organization, or caucus shall be grounds for revocation of its charter. The State Chair, with the approval of the Central Committee, shall set procedures and guidelines for granting charters to clubs, organizations, and caucuses desiring to use the name Democrat, Democratic, or derivative thereof. Membership therein is limited to Democrats registered to vote in Florida. These Democratic organizations are permitted to provide for associate member status to provide opportunities for those who might otherwise be unable to participate. Associate members are not full voting members, do not count toward a quorum and cannot hold office.</p>
+  </div>
+</div>
+<div class="section" id="vii-article-vii-state-conventions-gubernatorial-co">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">VII</span>
+    <span class="sec-title">ARTICLE VII. STATE CONVENTIONS & GUBERNATORIAL CONFERENCES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. State Conventions:</strong> The Florida Democratic Party shall assemble in convention the year immediately preceding the year in which an election for the office of President of the United States is to be held.</p>
+<p><strong>SECTION 2. Gubernatorial Conferences:</strong> The Florida Democratic Party may assemble in a conference each year before the year in which an election for office of Governor of the State of Florida is to be held.</p>
+<p><strong>SECTION 3. Agenda of State Conventions and Gubernatorial Conferences:</strong> The nature, agenda, composition, time, and place of conventions and conferences shall be determined by the Florida Democratic Party Chair.</p>
+<p><strong>SECTION 4. Delegates:</strong> State Conventions and Gubernatorial Conferences shall be composed of delegates selected in a manner which conforms to the diversity and inclusion programs and requirements of the Democratic National Committee and shall be as set forth in the Bylaws of the Florida Democratic Party.</p>
+  </div>
+</div>
+<div class="section" id="viii-article-viii-amendments-bylaws-and-rules-byla">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">VIII</span>
+    <span class="sec-title">ARTICLE VIII. AMENDMENTS, BYLAWS, AND RULES/BYLAWS</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Amendments to Charter:</strong> The Charter of the Florida Democratic Party may be amended or repealed by two-thirds (2/3) of the votes eligible to be cast by the members of the State Executive Committee present and voting, provided no amendment may be voted upon without ten (10) days written notice of the proposed amendment and meeting.</p>
+<p><strong>SECTION 2. Bylaws:</strong> The Bylaws of the Florida Democratic Party shall provide for the governance of the affairs of the Florida Democratic Party in matters not provided for in the Charter of the Florida Democratic Party.</p>
+<p><strong>2.1 Adoption:</strong> The Bylaws of the Florida Democratic Party shall be adopted by two-thirds (2/3) of the votes eligible to be cast by the State Executive Committee present and voting, provided no Bylaw may be voted upon without ten (10) days written notice of the proposed Bylaw adoption and meeting.</p>
+<p><strong>2.2 Amendments:</strong> The Bylaws of the Florida Democratic Party may be amended by two thirds (2/3) of the votes eligible to be cast by the State Executive Committee present and voting, provided no amendment may be voted upon without ten (10) days written notice of the proposed amendment and meeting.</p>
+<p><strong>SECTION 3.</strong> <strong>Public Information:</strong> The Florida Democratic Party shall post and maintain a copy of the State Party's current Charter and Bylaws on the Party's official website. Copies of any changes or amendments thereto shall be filed with the Democratic National Committee within thirty days following adoption.</p>
+<p><strong>SECTION 4. Rules/Bylaws:</strong> Official components of the Florida Democratic Party, created under the authority of the Charter of the Florida Democratic Party, shall adopt and conduct their affairs with written rules or bylaws which shall be in accordance with Florida Statutes, the Charter of the Democratic National Committee, the Charter and Bylaws of the Florida Democratic Party, and resolutions by either the Democratic National Committee or the Florida Democratic Party, and which shall be approved by the Florida Democratic Party.</p>
+  </div>
+</div>
+<div class="doc-part-header" id="doc-the-bylaws-of-the-florida-democratic-party">THE BYLAWS OF THE FLORIDA DEMOCRATIC PARTY</div>
+<div class="section" id="i-article-i-name-powers-and-general-policies-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">I</span>
+    <span class="sec-title">ARTICLE I. NAME, POWERS, AND GENERAL POLICIES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Rules of Procedure:</strong></p>
+<p><strong>1.1 Government:</strong> Unless otherwise provided in the Charter or Bylaws of the Florida Democratic Party, the most recent edition of Robert’s Rules of Order shall govern.</p>
+<p><strong>1.2 Proxies:</strong> Any member who, for any reason, is unable to attend any meeting of the State Executive Committee, the Central Committee, a congressional district committee, a Florida Democratic Party standing or special committee, or any county Democratic Executive Committee may execute a written or electronic proxy, in a form prescribed by the Florida Democratic Party. Any proxy which is incomplete in any way shall be returned to the member issuing the proxy. The member sending the incomplete proxy shall be notified immediately by phone or electronically that the proxy is incomplete. The holder of such proxy shall be a qualified Democrat or a member of the committee before which said proxy is to be presented. Except as specified below, no person shall be permitted to hold more than one (1) proxy. Such proxies shall be available for review by any member of the committee to which the proxy has been submitted.</p>
+<p><strong>1.2.1 State Executive Committee:</strong> Other than Automatic Members, members of the State Executive Committee seeking to appoint a proxy shall designate a state committee member or other Democrat residing in the same county or a member of the group represented by said member. For a proxy to be honored by the State Executive Committee, the holder of the proxy shall submit the proxy to the Florida Democratic Party prior to the commencement of the meeting for which it is intended to be used. A state committee member shall be permitted to hold a maximum of four (4) proxies; provided that in the case of counties apportioned five or more elected members, at least two elected members from that county must attend the respective meeting to qualify to carry proxies. A non-state committee member shall be permitted to hold a maximum of one (1) proxy.</p>
+<p><strong>1.2.2 Central Committee:</strong> Members of the Central Committee seeking to appoint a proxy shall designate a Democrat or state committee member of his or her choice to hold a proxy to a particular meeting specified in the proxy from the same congressional district or specified group represented by said member.</p>
+<p><strong>1.2.3 County Democratic Executive Committee:</strong> An elected member of a county Democratic Executive Committee shall designate another DEC member or, in the alternative, a Democrat residing in the same precinct or district as said elected member. An automatic or appointed member of a county Democratic Executive Committee shall designate a Democrat residing in the same county as said member. For a proxy to be honored by a county Democratic Executive Committee, the holder shall submit written notice to the county Democratic Executive Committee chair prior to the meeting.</p>
+<p><strong>1.2.4 Clubs, Organizations, and Caucuses:</strong> Proxy voting shall be prohibited for Democratic clubs, organizations, and caucuses.</p>
+<p><strong>1.2.5 Form:</strong> Proxies shall be substantially the same form as set forth herein.</p>
+<p><strong>1.2.6 Quorum Limitation:</strong> Proxies may not account for more than fifteen percent (15%) in computing a quorum.</p>
+<p><strong>1.2.7 Attendance:</strong> Proxies shall not be considered in the fulfillment of attendance requirements.</p>
+<p><strong>1.3 Quorums:</strong> The quorum requirements shall be as follows:</p>
+<p><strong>1.3.1 State Executive Committee:</strong> Forty percent (40%) of the total membership then in office, as defined in Article II, Section 2 of the Charter of the Florida Democratic Party.</p>
+<p><strong>1.3.2 Central Committee:</strong> Forty percent (40%) of the total membership.</p>
+<p><strong>1.3.3 Congressional District Committee:</strong> Forty percent (40%) of the total membership.</p>
+<p><strong>1.3.4 Florida Democratic Party Standing Committees:</strong> Thirty-five percent (35%) of the total membership.</p>
+<p><strong>1.3.5 Florida Democratic Party Special Committees:</strong> Forty percent (40%) of the total membership</p>
+<p><strong>1.3.6 Democratic Executive Committees:</strong> Twenty-five percent (25%) of the total membership, excluding Automatic members..</p>
+<p><strong>1.3.7 Democratic Clubs and Caucuses:</strong> Twenty percent (20%) of the total membership for clubs and caucuses with membership of 499 or less. Ten percent (10%) of the total membership for clubs and caucuses with membership of 500 or more. However, clubs and caucuses may establish a higher quorum requirement.</p>
+<p><strong>1.4 Accessibility:</strong> All meetings of the Florida Democratic Party committees, clubs, organizations, and caucuses shall be held in facilities that are accessible to the physically disabled.</p>
+<p><strong>1.5 Voting:</strong> Voting on all motions or matters presented to the State Executive Committee and/or the Central Committee shall take place in person, by proxy, or by such absentee voting, electronic voting or telephonic voting as may be specified in the Rules adopted by the State Executive Committee.</p>
+<p><strong>SECTION 2. Powers:</strong></p>
+<p><strong>2.1 Removal From Office:</strong> Any member or officer of a Florida Democratic Party committee, club, organization, or caucus may be removed from office upon a two-thirds (2/3) vote of the entire membership at a regular or special meeting called for that purpose. For purposes of this section, "entire membership" means all members eligible to vote in that body as of the date the notice is issued. At least ten (10) days’ written notice must be provided, and the notice must state that a removal vote will be taken, identify the person and the office or position at issue, and briefly describe the reason(s) for removal to be considered. Such removal may be for cause, including, but not limited to, malfeasance, misfeasance, neglect of duty, incompetence, permanent inability to perform official duties, and/or conviction of a felony involving moral turpitude, and the person subject to removal must be given a reasonable opportunity to respond before the vote. If removal is successful, its effect shall be immediate, and the position shall be vacant and be filled pursuant to the applicable vacancy provisions. A person removed under this section may file a written appeal with the Judicial Council within thirty (30) days. The appeal shall be limited to whether proper notice was given, the correct voting threshold was applied, and a reasonable opportunity to respond was provided. The removal remains in effect during the appeal unless the Judicial Council orders otherwise.</p>
+<p><strong>SECTION 3. Endorsement:</strong></p>
+<p><strong>3.1 Definition:</strong> Endorsement shall be defined as endorsing, certifying, screening, or recommending, in any manner, candidates in primary elections.</p>
+<p><strong>3.2 Party Assessment Fees:</strong> Party assessment fees to which a county Democratic Executive Committee is entitled shall be retained by the State Executive Committee if a county Democratic Executive Committee chooses to endorse.</p>
+<p><strong>3.3 Campaign Support:</strong> All State Executive Committee funds and campaign support shall be withheld from such county Democratic Executive Committee until after the second primary election.</p>
+<p><strong>3.4 Candidate Qualifying:</strong> No endorsement shall be made prior to the close of the period of candidate qualifying.</p>
+<p><strong>3.5 Requirements:</strong> The following requirements shall be met prior to a county Democratic Executive Committee being eligible to endorse:</p>
+<p><strong>3.5.1 Precinct or District Positions.</strong> Eighty percent (80%) of all precinct committee positions or ninety percent (90%) of all district committee positions, as appropriate, shall be filled.</p>
+<p><strong>3.5.2 Meetings.</strong> The county Democratic Executive Committee shall have held at least four (4) meetings at which a quorum was present during the previous twelve (12) month period.</p>
+<p><strong>3.5.3 Membership Support:</strong> Two-thirds (2/3) of the total membership of the county Democratic Executive Committee, exclusive of its automatic members, shall vote in favor of endorsement.</p>
+<p><strong>3.6 Standards:</strong> The following standards shall be met for a county Democratic Executive Committee to endorse:</p>
+<p><strong>3.6.1 Membership Support:</strong> Two-thirds (2/3) of the total membership of the county Democratic Executive Committee, exclusive of its automatic members, shall vote in favor of endorsing a candidate in a given race.</p>
+<p><strong>3.6.2 Limitations:</strong> Endorsements by a county Democratic Executive Committee shall be limited to those races in which the county Democratic Executive Committee assessment applies or to non-partisan races in which registered Democrats are running.</p>
+  </div>
+</div>
+<div class="section" id="ii-article-ii-state-executive-committee-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">II</span>
+    <span class="sec-title">ARTICLE II. STATE EXECUTIVE COMMITTEE</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Membership:</strong></p>
+<p><strong>1.1 Automatic Members:</strong> Automatic members shall be all Democratic members of the United States Congress representing Florida, all Democratic statewide elected officials, either the Florida Senate President or Minority Leader, whoever is a Democrat, either the Florida Speaker of the House or Minority Leader, whoever is a Democrat, and such Democratic members of the legislature as may be required by Florida Statutes.</p>
+<p><strong>1.2 Vacancies:</strong> Should an elected state committee member move his or her residency from the county he or she represents, said members shall no longer represent that county on the State Executive Committee and that seat shall be <del>deemed</del> vacant. A vacancy in membership for any reason shall be filled for the unexpired term by the county Democratic Executive Committee by election within thirty (30) days of creation of said vacancy. If a county Democratic Executive Committee fails to act within that time, the State Chair shall fill the vacancy by appointing a Democrat residing within that county with priority consideration given to DEC members from among the elected precinct or district committee members as specified in Article II, Section 2 of the Charter.</p>
+<p><strong>SECTION 2. Officers:</strong></p>
+<p><strong>2.1 Requirements:</strong> Officers and appropriate staff members shall be under adequate bond within thirty (30) days of taking office. Officers shall be required to deliver to their successors, before their bond may be released, all records of the Florida Democratic Party within their custody.</p>
+<p><strong>2.2 Duties and Authority of the State Chair:</strong> The State Chair shall be the chief executive officer of the State Executive Committee and shall have the authority and duties implied by such title and expressed or implied by the Charter and Bylaws of the Florida Democratic Party. The State Chair shall have the authority to make decisions between meetings of the State Executive Committee and the Central Committee that are consistent with the Charter and Bylaws of the Florida Democratic Party, Florida Statutes, and Florida Democratic Party policy and shall perform such duties as prescribed by law or usual to such office.</p>
+<p><strong>2.2.1 Standing Committees:</strong> The State Chair may refer any question coming before a meeting of the State Executive Committee or Central Committee to any standing committee and require it to meet and consider such question and report to the State Executive Committee or Central Committee prior to adjournment.</p>
+<p><strong>2.2.2 Staff:</strong> The State Chair shall hire staff for the Florida Party.</p>
+<p><strong>2.2.3 Records:</strong> The State Chair shall be responsible for taking such action and keeping accurate records as follows: of the proceedings of the State Executive Committee and the Central Committee; an accurate, complete, and permanent record of all receipts and disbursements; shall issue all checks for the disbursal of funds of the Florida Democratic Party; shall make available to the Budget and Finance Committee all financial records; and shall furnish promptly all information on the affairs of the committee upon written request of any member of the State Executive Committee.</p>
+<p><strong>2.2.4 Finances:</strong> Funds shall be kept on deposit in the name of the Florida Democratic Party or in the name of a committee, campaign, or special fund as the case may be. The State Chair may deposit funds to the credit of a committee or special fund as may be necessary.</p>
+<p>Funds may be disbursed by bank draft or check drawn by the State Chair. For purposes of these rules, electronic wire transfers or credit card purchases shall be treated the same as checks.</p>
+<p>Accounts of the Florida Democratic Party, its committees, and special funds shall be subject to an annual audit. The State Chair, in collaboration with the Treasurer, shall appoint a certified public accountant, with the approval of the Central Committee, to conduct said audit. Audit reports shall be maintained for a period of five (5) years. Copies of the same shall be made available to members of the State Executive Committee and to county Democratic Executive Committee chairs within the time provided for filing the same with the Florida Department of State.</p>
+<p><strong>2.2.5 Budget:</strong> The State Chair shall propose and submit a budget annually to the Budget and Finance Committee and Central Committee for approval. The proposed annual budget, inclusive of all categories and line-items of spend, shall be submitted to the Budget and Finance Committee no later than November 30 of the preceding fiscal year. The fiscal year shall be the same as the calendar year. The budget, inclusive of all categories of spending, shall be made available to all members of the Central Committee, and adopted by the Central Committee within sixty (60) days following the end of the fiscal year. Upon approval of the budget, the State Chair shall be authorized to expend funds consistent therein. The State Chair is not authorized to expend more than twenty-five thousand dollars (\$25,000) on any non-budgeted item without the approval of the Budget and Finance Committee. Any non-budgeted items of more than five thousand dollars (\$5,000) and less than twenty-five thousand dollars (\$25,000) expended by the State Chair shall be presented to the next meeting of the Central Committee for approval. The Budget and Finance Committee may modify the budget at any time.</p>
+<p><strong>2.2.6 Checks:</strong> Disbursements in excess of twenty-five thousand dollars (\$25,000), with the exception of staff salaries, whether made by check, ACH, wire transfer, credit card, or any other electronic method, shall require documented authorization or signature by the State Chair and either the Treasurer, or one of two Budget and Finance Committee members annually appointed by the State Chair, subject to approval of the Budget and Finance Committee. The State Chair shall notify the Budget and Finance Committee in writing (via mail or email) or by conference call of the expenditure. Checks in the amount of twenty-five thousand dollars (\$25,000) or less and staff salary checks may be signed by the State Chair only.</p>
+<p><strong>2.2.7 Salary and Expenses:</strong> The State Chair may receive a salary and actual expenses as incurred. Said salary shall be subject to approval and annual review by the Budget and Finance Committee and the Central Committee.</p>
+<p>At the discretion of the Budget and Finance Committee, the First Vice Chair, the Vice Chairs, the Secretary, and Treasurer of the Florida Democratic Party may receive reimbursement for travel related expenses necessary to carry out their duties, consistent with a reimbursement policy approved by the Budget and Finance Committee. This policy shall be reviewed annually.</p>
+<p><strong>2.3 Duties and Authority of First Vice Chair:</strong> The First Vice Chair shall assist the State Chair and shall have the duties and authority implied by that title, assigned by the State Chair, or specified by the charter and bylaws of the Florida Democratic Party. In addition, when the First Vice Chair is of the opposite sex from the State Chair, the First Vice Chair shall be the designated "Vice Chair" to serve on the Democratic National Committee, pursuant to the Charter, Bylaws, and Rules of the Democratic National Committee. When the First Vice Chair is not of the opposite sex from the State Chair, the automatic slot on Democratic National Committee normally reserved for the First Vice Chair shall be held by the next highest ranking elected FDP officer who is of the opposite sex from the State Chair.</p>
+<p><strong>2.3.1 State Chair\'s Absence:</strong> The First Vice Chair shall perform the duties of the State Chair in his or her absence or in the event of a vacancy in the office. The First Vice Chair shall perform other duties usual to such office or which are required in the State Chair’s absence, except for appointments to standing committees or to the Central Committee. The First Vice Chair shall preside over meetings of the State Executive Committee in the absence of the State Chair. In the event of the absence of both the State Chair and the First Vice Chair, the powers and duties of the State Chair, except for appointments, shall be exercised on an acting basis by the Secretary; in the absence of the Secretary, the powers and duties of the State Chair, except for appointments, shall be exercised on an acting basis by the Treasurer.</p>
+<p><strong>2.4 Duties and Authority of the Vice Chairs:</strong> The Vice Chairs appointed by the State Chair shall assist the Chair in the development and implementation of a plan to strengthen the outreach of the Party to all of its various constituency groups. The Budget and Finance Committee shall authorize the reimbursement of travel and related expenses necessary to carry out these duties.</p>
+<p><strong>2.5 Duties and Responsibilities of the Secretary:</strong> The Secretary shall be the official record keeper of the Florida Democratic Party and shall assist the State Chair with roll calls, voting tabulations, meeting minutes, and membership lists and shall perform other duties as deemed necessary by the State Chair.</p>
+<p><strong>2.6 Duties and Responsibilities of the Treasurer:</strong> The treasurer, in consultation with the State Chair, shall monitor party income and expenses against the approved budget and shall provide a report to the State Executive Committee and the Central Committee at each meeting. The Treasurer shall assist the State Chair in ensuring the party's compliance with all applicable campaign finance reporting and audit requirements. The treasurer may countersign checks or authorize disbursements in excess of twenty five thousand dollars (\$25,000), except staff salaries, as provided in Article II, Section 2.2.6, and shall perform other duties as deemed necessary by the State Chair.</p>
+<p><strong>2.7 Vacancies:</strong> In the event of a vacancy in the office of State Chair, the First Vice Chair shall call a meeting of the State Executive Committee within thirty (30) days for the election of a new State Chair. In the event of a vacancy in the office of First Vice Chair, Secretary, or Treasurer, it shall be filled for the unexpired term by election by majority vote at a meeting of the State Executive Committee within forty five (45) days.</p>
+<p><strong>2.8 Neutrality:</strong> Elected Officers and appointed Vice Chairs of the Florida Democratic Party shall remain impartial and evenhanded in partisan and non-partisan primary elections, with multiple registered Democrats having qualified for the ballot. This provision shall not limit an officer's rights in their personal capacity, provided they do not represent their views as those of the State Party. The State Executive Committee shall approve a neutrality policy to effectuate this requirement.</p>
+<p><strong>SECTION 3. Meetings:</strong></p>
+<p><strong>3.1 Notice:</strong> The State Chair may call meetings upon written notice of no less than ten (10) days. Written notice may include email communication.</p>
+<p><strong>3.2 Call by Petition:</strong> A meeting shall be called by the State Chair within twenty (20) days after receipt of a petition representing no less than thirty percent (30%) of the total votes of the State Executive Committee.</p>
+<p><strong>3.3 Agenda:</strong> The chair of each standing committee, or designee, shall report at each meeting.</p>
+<p><strong>3.4 Organizational Meeting:</strong> Organizational meetings of the State Executive Committee shall remain in continuous session until all business properly coming before the committee has been disposed of, however, they may recess to a time certain or from day to day.</p>
+<p><strong>3.4.1 Agenda:</strong> The organizational meeting shall be called to order by the State Chair who shall preside until the election of the new State Chair, who shall then assume the Chair. The order of business shall be as follows:</p>
+<p>\(1\) Invocation</p>
+<p>\(2\) Pledge of Allegiance</p>
+<p>\(3\) Roll Call</p>
+<p>\(4\) Reports of Standing Committees</p>
+<p>\(5\) Election of State Chair</p>
+<p>\(6\) Election of First Vice Chair</p>
+<p>\(7\) Election of Secretary</p>
+<p>\(8\) Election of Treasurer</p>
+<p>\(9\) Election of Congressional District Chair and Vice Chair</p>
+<p><strong>3.4.2 Failure to Call:</strong> In the event the State Chair fails to call an organizational meeting, the State Executive Committee shall meet in Tallahassee on the fourth (4th) Saturday following their election.</p>
+<p><strong>SECTION 4. Policy and Procedure:</strong></p>
+<p><strong>4.1 Salaries:</strong> No member of the State Executive Committee, except the State Chair, shall receive a salary. No member of the State Executive Committee shall hold a contractual agreement with the State Executive Committee without the approval of the Budget and Finance Committee.</p>
+<p><strong>4.2 Records:</strong> Copies of minutes of proceedings of State Executive Committee and Central Committee meetings shall be available to members at the headquarters of the Florida Democratic Party within thirty (30) days following such meetings.</p>
+<p><strong>SECTION 5. Committees:</strong></p>
+<p><strong>5.1 Standing Committees:</strong> Standing Committees shall be the Rules Committee, the Judicial Council, the Diversity and Inclusion Committee, the Committee on Clubs, Organizations, and Caucuses, the Legislative Liaison Committee, the Resolutions Committee, and the Campaign Committee. Standing committees shall be appointed by the State Chair within sixty (60) days following their election.</p>
+<p><strong>5.2 Membership:</strong> The members of standing committees shall be appointed by the State Chair for one (1) year terms unless otherwise provided in these Bylaws. The chair, co-chair, and vice chair of each standing committee shall be appointed by the State Chair, subject to approval by the Central Committee, for a one (1) year term. The State Chair and First Vice Chair shall serve as ex officio members of all standing committees, unless otherwise provided herein. All standing committee appointments shall terminate with the election of a new State Chair.</p>
+<p><strong>5.3 Budget and Finance Committee:</strong></p>
+<p><strong>5.3.2 Duties:</strong> The committee shall meet at least four (4) times per year to carry out its responsibilities. The duties of the committee shall be to approve and submit an annual budget to the Central Committee for approval. The committee shall review the approved budget and the Party's financial position at least on a quarterly basis. The committee shall approve any amendments to the approved budget and approve any non-budgeted expenditures of more than twenty-five thousand dollars (\$25,000). The committee shall prescribe the expense reimbursement policy of the Florida Democratic Party, and assist the State Chair in fundraising.</p>
+<p><strong>5.4 Rules Committee:</strong></p>
+<p><strong>5.4.1 Duties:</strong> The duties of the committee shall be to interpret the Charter and Bylaws of the Florida Democratic Party, to review all proposed amendments to the same, to review all proposed Party Rules, to develop all rules and delegate selection procedures relating to Florida Democratic Party conventions and conferences, and to oversee county Democratic Executive Committee bylaws.</p>
+<p><strong>5.4.2 Appeals:</strong> Appeals of Rules Committee decisions shall be to the State Executive Committee.</p>
+<p><strong>5.5 Judicial Council:</strong></p>
+<p><strong>5.5.1 Membership:</strong> Members shall consist of one (1) person from each congressional district, who may be either a member of the State Executive Committee, a county Democratic Executive Committee chair, or a county Democratic Executive Committee vice chair.</p>
+<p><strong>5.5.2 Duties:</strong> The duties of the Judicial Council shall be to hear appeals from Florida Democratic Party committees resulting from the application and/or enforcement of the Charter and Bylaws of the Florida Democratic Party.</p>
+<p><strong>5.5.2.1 Judicial Council Chair:</strong> The Chair of the Judicial Council shall preside over all Council meetings and report its actions and decisions to the State Central Committee and/or the State Executive Committee. The Chair shall have the authority to provide advice or counsel on matters within the Council’s jurisdiction, refer grievances or appeals to a pre-hearing, and refer Democratic club or Caucus appeals to the Committee on Clubs, Organizations, and Caucuses.</p>
+<p>Any ruling or decision of the Chair shall stand unless challenged by a party to a grievance or appeal. A written challenge must be filed with the Judicial Council Chair within five (5) days of the Chair’s ruling or decision, upon which the Council shall convene at its next scheduled meeting, or within thirty (30) days, whichever occurs first. The ruling or decision may be overturned upon a majority vote of the members present.</p>
+<p><strong>5.5.3 Subcommittee:</strong> The Judicial Council may, sit as a subcommittee, as follows:</p>
+<ol type="a">
+<li><p>Appeals that involve implementation of the Charter and Bylaws of the Florida Democratic Party, or that involve suspension, removal, or disciplinary sanctions against an elected officer of a county Democratic Executive Committee, a Caucus, or the State Executive Committee, shall be heard and decided by the full Judicial Council.</p></li>
+<li><p>Appeals that do not fall within subsection (a) may be assigned to a subcommittee of no fewer than three (3) members. To the extent practicable, the members of any subcommittee shall reflect geographic diversity. A subcommittee constituted under this section shall have authority to conduct hearings and issue a report and recommendations on behalf of the Judicial Council, subject to the limitations of Section 5.5.5.</p></li>
+</ol>
+<p><strong>5.5.4 Notice of Appeal:</strong> An appeal shall be initiated within thirty (30) days of such action as may give rise to an appeal. Failure to file a timely notice of appeal shall be grounds for dismissal of the appeal with prejudice. Such appeal shall be commenced and initiated by notice sent in writing (via certified mail and email) to the State Chair. The State Chair shall acknowledge receipt of the appeal to the petitioner and immediately forward said notice to the chair of the Judicial Council. The notice of appeal shall set forth all ultimate facts giving rise to the appeal and the specific relief requested by the petitioner. The chair of the Judicial Council may require the petitioner to enlarge and/or clarify any issue raised in the notice of appeal. Such a requirement shall be given within a reasonable time in advance of any hearing scheduled on the appeal. The appropriate party(ies) shall be afforded an opportunity for a written response or an answer to a notice of appeal.</p>
+<p><strong>5.5.5 Hearings:</strong> Within ninety (90) days of receipt of the notice of appeal, the chair of the Judicial Council shall call a meeting to hear evidence and render judgment on the issues raised by the appeal. From the time an appeal notice is received until the Judicial Council renders a decision, members of the Judicial Council, Party officers, and staff shall remain neutral and not interfere with, or attempt to influence the appeals process for either party. Any member of the Judicial Council who is a party to or a witness in an appeal shall recuse themselves from the hearing and any related deliberations or vote. A notice of hearing shall be sent by the chair of the Judicial Council to all parties in writing (via mail or email) within no more than thirty (30) days nor less than ten (10) days of the hearing, stating the time, date, and place of said hearing and advising the parties of any deadlines for the exchange of evidence and witness lists. All evidence and witness lists to be considered by the Judicial Council shall be provided to all parties and the Judicial Council within the time frames set by the Judicial Rules of Procedure, to ensure each party has an equal opportunity to review and respond. The Judicial Council, after hearing all evidence and affording all parties a full opportunity to be heard, shall deliberate and render a final judgment on the appeal by a majority vote. In the event of a dispute on material fact(s) concerning the appeal, the council shall publish a \"Finding of Facts\" and its judgment on the issue(s). The "Finding of Facts" and judgment shall accurately reflect any recommendations adopted by the council. A copy of the council’s report shall be furnished to the State Chair and to all parties within ten (10) days the petitioner(s).</p>
+<p><strong>5.5.6 Appeals to the Central Committee:</strong> A ruling of the Judicial Council may be appealed to the Central Committee. Any appeal must be initiated within ten (10) days after the appealing party receives the Judicial Council's written report. Appeals will ordinarily be heard at the next regularly scheduled meeting of the Central Committee; however, the Central Committee may hear an appeal sooner if two-thirds (2/3) of its members agree in writing and submit that agreement to the State Chair. An appeal filed by the appealing party is initiated by submitting a written request to the State Chair. An appeal initiated by the State Chair begins upon written notice to the original petitioner(s). When an expedited special meeting is required, the State Chair shall then call a special meeting of the Central Committee within fifteen (15) days of receiving the written request. It shall provide the petitioner(s) with written notice of the date, time, and location of the meeting. The Central Committee shall review such appeal, with or without a formal hearing, and based solely on the record before the Judicial Council. The record on appeal consists of the Judicial Council's report and any written briefs submitted by the parties, which must be limited to the issues and evidence previously presented to the Judicial Council. The Central Committee may, at its discretion, hear oral arguments by the appropriate party(ies) to the appeal. The Central Committee may delegate a duly constituted subcommittee or special master to review or hear any appeal from the Judicial Council. Such a subcommittee or special master shall report its findings to the Central Committee. After reviewing the record and any permitted arguments, the Central Committee shall vote to affirm or reverse the ruling of the Judicial Council. A majority vote of the Central Committee is required, and its decision shall be final. Any member of the Central Committee who is a party to an appeal shall recuse themselves from the hearing and any related deliberations or vote.</p>
+<p><strong>5.5.7 Supplemental Rules:</strong> The Judicial Council, upon approval of the Central Committee, may adopt rules of procedures which are consistent with these Bylaws and are necessary to assist in the orderly conduct of business of the Judicial Council. Any such rules shall be provided to the petitioner(s) at or before the hearing.</p>
+<p><strong>5.6 Diversity and Inclusion Committee:</strong></p>
+<p><strong>5.6.1 Duties:</strong> The duties of the committee shall be to implement the affirmative action, diversity and inclusion policies of the Democratic National Committee and the Florida Democratic Party. The Diversity and Inclusion Committee will work with county Democratic Executive Committees to ascertain the demographic make-up of each county's Democratic electorate and will provide guidance to counties to assist with the implementation of their diversity outreach and inclusion programs. The Diversity and Inclusion Committee may review and recommend to the State Executive Committee such changes of the affirmative action, diversity and inclusion policies of the Party and its components as may be appropriate.</p>
+<p><strong>5.6.2 Implementation of Diversity Outreach and Inclusion Programs:</strong> All DECs shall appoint a liaison to the Diversity and Inclusion (D&amp;I) Committee. DEC Chairs shall consult with the D&amp;I Committee when implementing their diversity and inclusion programs within their county. The D&amp;I Committee shall oversee the implementation of diversity and inclusion programs across the state to set a uniform standard to follow within the FDP. All DEC county chairs or vice chairs will meet with the D&amp;I Committee and the executive director of the FDP on a regular scheduled basis for accountability. The D&amp;I Committee and the FDP leadership should have an open dialog with the presidents of the state caucuses and the presidents should continue to be members of the State Central and Executive Committees.</p>
+<p><strong>5.7 Committee on Clubs, Organizations, and Caucuses:</strong></p>
+<p><strong>5.7.1 Duties:</strong> The duties of the committee shall be to review and grant or deny charter applications from clubs, organizations, and caucuses, and to prescribe procedure for same, unless otherwise provided herein.</p>
+<p><strong>5.7.2 Appeals:</strong> Unless otherwise provided herein, the committee shall hear all certification appeals regarding clubs, organizations, or caucuses. Said appeal shall be heard only if the State Chair and the Chair of the Committee on Clubs, Organizations, and Caucuses agree that such an appeal is in order. All decisions may be appealed to the State Central Committee. Any member of the Committee on Clubs, Organizations, and Caucuses who is a party to or a witness in the grievance or appeal shall recuse themselves from the hearing and any related deliberations or vote.</p>
+<p><strong>5.8 Legislative Liaison Committee:</strong></p>
+<p><strong>5.8.1 Duties:</strong> The duties of the committee shall be liaison between the Florida Democratic Party and the Florida Legislature and the Florida Democratic Party and the United States Congress. The committee shall monitor statutory matters relating to Florida Democratic Party operation.</p>
+<p><strong>5.9 Campaign Committee:</strong></p>
+<p><strong>5.9.1 Duties:</strong> The duties of the committee shall be the development of a basic Campaign Plan for county Democratic Executive Committees that would coordinate with the Florida Democratic Party campaign plan.</p>
+<p><strong>5.10 Resolutions Committee:</strong></p>
+<p><strong>5.10.1 Duties:</strong> The duties of the Committee shall be to receive and consider all resolutions proposed for adoption by the State Executive Committee.</p>
+<p><strong>5.10.2 Structure:</strong></p>
+<p><strong>5.10.2.1 Membership:</strong> The Committee shall consist of no less than 10 and no more than 20 members appointed by the State Chair. The members should be geographically and demographically diverse and the disparity between sexes shall be no larger than one<strong>.</strong></p>
+<p><strong>5.10.2.2 Leadership:</strong> In addition, the Committee shall be chaired by two co chairs appointed by the State Chair. The co-chairs cannot be of the same sex.</p>
+<p><strong>5.10.2.3 Terms:</strong> The terms of the committee members and co-chairs will coincide with the term of the State Chair.</p>
+<p><strong>5.10.3 Operation:</strong></p>
+<p><strong>5.10.3.1 Meetings:</strong> The Committee shall meet at least one day prior to any meeting of the State Executive Committee and any other time the co-chairs deem appropriate.</p>
+<p><strong>5.10.3.2 Voting:</strong> Each member of the committee shall have one vote and decisions of the committee shall be by a majority of those voting. Members of the committee unable to attend a meeting may designate any other member of the state committee to serve as their proxy. Designation of a proxy must be done in writing and delivered to FDP staff or one of the co-chairs prior to the beginning of any meeting.</p>
+<p><strong>5.10.4 Operation:</strong></p>
+<p><strong>5.10.4.1 Submissions:</strong> Any member of the State Central Committee or State Executive Committee shall be allowed to submit a proposed resolution to the committee for review.</p>
+<p><strong>5.10.4.2 Timing:</strong> Submissions of proposed resolutions must be made in writing to the State Party Staff or to the co-chairs no later than 15 days before the meeting of the State Executive Committee.</p>
+<p><strong>5.10.4.3 Review:</strong> The committee shall review each proposal submitted to the committee and make a recommendation on each to the State Executive Committee. The committee has the discretion to amend or consolidate any proposals submitted to it.</p>
+<p><strong>5.10.4.4 Report:</strong> The co-chairs of the committee shall report to the State Executive Committee at its meeting its decision on each of the resolutions submitted to the committee, including those it recommended for adoption, those it amended or consolidate and those it did not recommend or took some other action on.</p>
+<p><strong>5.10.4.5 Approval of Report:</strong> Once the report of the co-chairs has been submitted to the State Executive Committee, the State Executive Committee can choose to adopt, amend or reject the report. Once the committee report is approved, those items included in the report for consideration by the State Executive Committee shall be placed on the new business section of the State Executive Committee Meeting agenda and voted on during that meeting. The State Executive Committee, by majority vote, has the authority to amend the report.</p>
+<p><strong>5.10.4.6 Late Breaking Resolutions:</strong> In the event there is an issue that arises after the 15-day window has closed for submissions of proposed resolutions but requires urgent attention of the State Executive Committee, a resolution may be proposed and submitted to the State Chair for review. If the State Chair determines that the facts on which the resolution is based were not known before the 15-day window closed and believes it is urgent for the State Executive Committee to speak on this matter, the Chair may add said proposed resolution to the list of items to be considered by the Resolutions Committee.</p>
+<p><strong>SECTION 6. Democratic National Committee Members:</strong></p>
+<p><strong>6.1 Membership:</strong> Members shall be divided as equally as is practical between men and women.</p>
+<p><strong>6.2 Term of Office:</strong> The term of office shall be for four (4) years and shall begin following the adjournment of the Democratic National Convention and terminate upon adjournment of the next Democratic National Convention.</p>
+<p><strong>6.3 Vacancies:</strong> An office is deemed vacant upon death or resignation of the office holder or when a member fails to attend three (3) meetings in any one (1) calendar year of the Democratic National Committee, the State Executive Committee, and/or the Central Committee. A vacancy shall be filled by the State Chair temporarily, until the next State Executive Committee meeting where an election for that vacancy shall be held.</p>
+<p><strong>6.4 Expense Reimbursement:</strong> Reimbursement for expenses incurred while attending Democratic National Committee meetings shall be as prescribed by the Budget and Finance Committee and approved by the Central Committee. This policy shall be reviewed annually.</p>
+  </div>
+</div>
+<div class="section" id="iii-article-iii-central-committee-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">III</span>
+    <span class="sec-title">ARTICLE III. CENTRAL COMMITTEE</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Membership:</strong> The Central Committee shall be composed of the State Chair, First Vice Chair, Vice Chairs, Secretary, and Treasurer of the Florida Democratic Party; the Chair Emeritus of the Florida Democratic Party; the chair and vice chair of each congressional district; Florida members of the Democratic National Committee; the presidents of the Chartered Caucuses of the Florida Democratic Party, the Democratic Women’s Club of Florida, and the Florida Young Democrats; the chair of the Democratic County Chairs’ Association; the chair of the Small County Coalition; ten (10) persons appointed by the State Chair to achieve political, economic, or minority balance, five (5) of whom shall be men and five (5) of whom shall be women, one of each sex who shall be chosen by the Trustees to represent them; the chairs of all Standing Committees; automatic members as may be designated by Florida Statutes and which may be changed from time to time; and eight (8) county Democratic Executive Committee chairs who shall be appointed by the State Chair. Two (2) of the county Democratic Executive Committee chairs shall be from the two (2) counties with the highest number of registered Democrats, three (3) of the county Democratic Executive Committee chairs shall be from the ten (10) counties with the next highest number of registered Democrats, and three (3) of the county Democratic Executive Committee chairs shall be from the remaining counties. All appointments shall be confirmed by the Central Committee. Appointed members shall serve for a one (1) year period; however, they may be reappointed. All appointments to the Central Committee shall terminate upon the election of a new State Chair.</p>
+<p><strong>SECTION 2. Meetings:</strong></p>
+<p><strong>2.1 Notice:</strong> The State Chair may call meetings upon written notice of no less than ten (10) days. Written notice may include email communication.</p>
+<p><strong>2.2 Call by Petition:</strong> A meeting shall be called by the State Chair within twenty (20) days after receipt of a petition from a majority of the members of the Central Committee.</p>
+<p><strong>2.3 Agenda:</strong> The chair of each standing committee, or designee, shall report at each meeting.</p>
+<p><strong>SECTION 3. Policy and Procedure:</strong></p>
+<p><strong>3.1 Salaries:</strong> No member of the Central Committee, except the State Chair, shall receive a salary.</p>
+<p><strong>3.2 Records:</strong> Copies of synopses of proceedings of the Central Committee shall be electronically furnished to members within thirty (30) days following such meetings.</p>
+<p><strong>3.3 Votes by Mail:</strong> The State Chair, at his or her discretion, may take a vote of the membership by certified mail, electronic poll and/or telephone polling on any matter.</p>
+  </div>
+</div>
+<div class="section" id="iv-article-iv-congressional-district-committees-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">IV</span>
+    <span class="sec-title">ARTICLE IV. CONGRESSIONAL DISTRICT COMMITTEES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Membership:</strong> The congressional district committees shall be composed of the state committee members from those counties, either totally or partially, within a congressional district.</p>
+<p><strong>SECTION 2. Officers:</strong> There shall be a chair and a vice chair, who shall be of the opposite gender from the chair, elected from among the members of the congressional district committee.</p>
+<p><strong>2.1 Congressional District Chair and Vice Chair:</strong> The Congressional District Chair and Vice Chair shall be elected by the State Committee members representing counties wholly or partially within the Congressional District. No State Committee member may hold more than one Congressional District Chair or Vice Chair office at a time. In congressional districts comprising more than one county, the Chair and Vice Chair may not both be from the same county, and must reside within the Congressional District. If no eligible State Committee member of a different gender residing in a different county within the Congressional District accepts nomination for the Vice Chair position, either or both of those requirements shall be waived in the order necessary to fill the office. A majority vote shall determine the election. In the event of a tie vote, the State Chair shall determine the outcome.</p>
+<p><strong>2.2 Term of Office:</strong> The term of office for congressional district committee officer shall be four (4) years unless abbreviated terms occur due to reapportionment of Florida’s congressional districts.</p>
+<p><strong>2.3 Vacancies:</strong> In the event of a vacancy in the office of Congressional District Chair or Vice Chair, it shall be filled for the unexpired term by vote at the next meeting of the State Executive Committee by members of the Congressional District Committee of the respective Congressional District. The vote shall be conducted in the same manner as is provided for the initial election of Congressional District Chair and Vice Chair.</p>
+<p><strong>SECTION 3. Policy and Procedure:</strong></p>
+<p><strong>3.1 Reapportionment:</strong> Within sixty (60) days following the last election of candidates and congressional districts subject to Florida's most recent certified reapportionment plan, the Florida Democratic Party shall reapportion its congressional district committees and elect new congressional district committee officers. Notwithstanding term limits, any congressional district that is not affected by the most recent certified reapportionment plan shall not be subject to a new election for Congressional District Chair and Vice Chair.</p>
+  </div>
+</div>
+<div class="section" id="v-article-v-county-democratic-executive-committees-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">V</span>
+    <span class="sec-title">ARTICLE V. COUNTY DEMOCRATIC EXECUTIVE COMMITTEES ("DEC")</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Membership:</strong></p>
+<p><strong>1.1 Elected Members:</strong></p>
+<p><strong>1.1.1 Definition:</strong> Elected members shall be defined as those persons elected pursuant to Article V, Sections 1.1.1-1.1.5 and those elected by the county Democratic Executive Committee to fill vacancies in precincts or districts. Once a person is elected in a precinct or district, even if that person should move out of that precinct or district and be appointed at-large or to fill a vacancy in the precinct or fill a vacancy in the precinct or district into which he or she moved, for the purpose of eligibility to seek office, such person shall be classified as an elected member for the duration of that term. If a vacancy does not exist in the precinct or district where the member moves, a special at-large status shall be created for that member not to be counted against the total number of appointed members available to that county.</p>
+<p><strong>1.1.2 Precinct System:</strong> The elected membership of the county Democratic Executive Committee shall consist of a man and a woman from each precinct who are registered Democrats, and who reside in, are registered to vote in, and are elected from the precinct they are to represent. Should the Democratic registration of any precinct exceed one thousand (1,000) as of January 1 of a year in which qualifying for election to county Democratic Executive Committee occurs, an additional one (1) man and one (1) woman are entitled to be elected for each additional 1,000 registered Democrats, or fraction thereof, to represent any such precinct. They shall be elected by a plurality vote on the First Primary Ballot of each presidential election year. At any time a precinct totals one thousand (1,000) registered Democrats or when new precincts are created, additional County Democratic Executive Committee positions shall be created for each new precinct and for each additional 1,000 Democrats, or fraction thereof, in existing precincts. Such positions shall be filled by the county Democratic Executive Committee according to its procedure for filling vacancies.</p>
+<p><strong>1.1.3 Optional Precinct System:</strong> In a county consisting of fewer than two hundred (200) precincts, the elected membership of the county Democratic Executive Committee shall consist of a man and a woman from each precinct who are registered Democrats, and who reside in, are registered to vote in, and are elected from the precinct they are to represent. Should the voter registration of any precinct exceed one thousand (1,000) as of January 1 of a year in which qualifying for election to county Democratic Executive Committee occurs, the county Democratic Executive Committee may, by amendment to its Bylaws, and upon immediate notification to the Supervisor of Elections of that county by confirmed communication method, and upon immediate notification to the State Chair by confirmed communication method, elect an additional one (1) man and one (1) woman to represent all such precincts. They shall be elected by a plurality vote on the first primary ballot of each Presidential election year. At any time a precinct totals one thousand (1,000) registered voters or when new precincts are created, additional county Democratic Executive Committee positions shall be created. Such positions shall be filled by the county Democratic Executive Committee according to its procedures for filling vacancies.</p>
+<p><strong>1.1.4 District System:</strong> In a county consisting of more than one hundred (100) precincts, the elected membership of the county Democratic Executive Committee may, by a majority vote of all county Democratic Executive Committee members prior to December 31 of each year before the year in which an election for the office of President of the United States is to be held, consist of a man and a woman who are registered Democrats, and who reside in, are registered to vote in and are elected from election districts. Should the Democratic registration of any district exceed one thousand (1,000) as of January 1 of a year in which qualifying for election to county Democratic Executive Committee occurs, an additional one (1) man and one (1) woman are entitled to be elected for each additional 1,000 registered Democrats, or fraction thereof, to represent any such district. They shall be elected by a plurality vote on the First Primary Ballot of each presidential election year. The chair of the county Democratic Executive Committee shall notify the State Chair of such decision by certified mail. The Florida Democratic Party shall request, no later than December 31, 1983 and every fourth year thereafter, the Supervisor of Elections of that county, with approval of the board of County Commissioners, or the body having ultimate responsibility for the conduct of elections within the county, to provide for election districts as nearly equal in number of registered voters as possible. Such districts shall be created in accordance with the following requirements:</p>
+<ol type="a">
+<li><p>The election districts shall have as equal a number of precincts as possible.</p></li>
+<li><p>The number of registered voters in any election district shall not vary by more than ten percent (10%) of the average number of registered voters in all election districts.</p></li>
+<li><p>No precinct shall be divided in the formation of districts.</p></li>
+<li><p>A district shall be composed of contiguous precincts.</p></li>
+</ol>
+<p><strong>1.1.5 Election of Members:</strong> County Democratic Committee members shall qualify and be elected to office at such times and in such manner as provided by Florida Statutes.</p>
+<p><strong>1.1.6 Term of Office:</strong> Elected members of the county Democratic Executive Committee shall take office on the first day of the month following each presidential general election and shall serve for a term of four (4) years.</p>
+<p><strong>1.1.7 Attendance:</strong> The State Chair, First Vice Chair, Vice Chairs, Secretary, and Treasurer of the Florida Democratic Party shall be exempt from the attendance requirements of the county Democratic Executive Committee to which they may belong.</p>
+<p><strong>1.2 Automatic Members:</strong></p>
+<p><strong>1.2.1 Definition:</strong> Automatic members shall be defined as those who are members by virtue of Florida Statutes or those who are members by virtue of county Democratic Executive Committee bylaw provision naming county Democratic elected officials, presidents of duly chartered Democratic Clubs, or presidents of chartered local Democratic caucus chapters who reside in said county. Such members shall serve for the duration of their term of office. Automatic members shall enjoy voting privileges, however, they shall not serve as officers of the county Democratic Executive Committee.</p>
+<p><strong>1.2.2 Attendance:</strong> Automatic members shall not be required to meet attendance requirements. Automatic members shall not be computed when determining a quorum.</p>
+<p><strong>1.3 Appointed Members:</strong></p>
+<p><strong>1.3.1 Definition:</strong> Membership of a county Democratic Executive Committee may include an additional ten percent (10%) of the total elected membership to which entitled. These members shall be appointed by the county Democratic Executive Committee chair and approved by a majority vote of the membership of the county Democratic Executive Committee present and voting. Appointed members shall be registered Democrats residing in the county. Appointed members shall serve at-large and shall enjoy voting and other privileges and responsibilities of membership except holding office. Selection of appointed members shall be made in order to achieve political, economic, or minority balance within the county Democratic Executive Committee.</p>
+<p><strong>1.3.2 Term of Office:</strong> The term of office for appointed members shall be one (1) year commencing with the date of appointment, however, it shall expire immediately prior to the commencement of the organizational meeting of the next committee. Said members may be appointed.</p>
+<p><strong>1.3.3 Special At-Large Status:</strong> At any time after the election of officers, a county Democratic Executive Committee may allow, at the request of a Democratic Party elected official from the county, state, or national Democratic Party level, a special at-large status for that person. Such positions shall not be included in a county Democratic Executive Committee’s appointed membership quota. If the elected official is an elected member of the county Democratic Executive Committee, a vacancy would be created in the district or precinct that he or she represents. Said vacancy shall be filled in accordance with that county Democratic Executive Committee’s bylaws.</p>
+<p><strong>1.4 Vacancies:</strong> When a member accumulates three (3) cumulative unexcused absences in any one (1) calendar year, their office shall be vacant. Vacancies on a county Democratic Executive Committee shall be filled by action of the county Democratic Executive Committee within sixty (60) days in accordance with Florida Statutes. After a vacancy has existed for sixty (60) days, it may be filled by the State Chair. Those persons appointed to fill precinct or district vacancies must be registered Democrats residing within the precinct or district that they are appointed to represent. An absence is excused for reason of illness, business, out-of-town or other reasonable excuse, with prior notification to an officer.</p>
+<p><strong>SECTION 2. Officers:</strong></p>
+<p><strong>2.1 Term of Office:</strong> Terms of office are for four (4) years, unless otherwise provided for in a county Democratic Executive Committee’s bylaws.</p>
+<p><strong>2.2 Chair Vacancies:</strong> In the event of a vacancy in the office of county Democratic Executive Committee chair, a meeting shall be held within forty-five (45) days, upon written notice to members of at least fifteen (15) days, to elect a new chair. Notice of vacancy shall be sent in writing (via certified mail or email) to the State Chair within ten (10) days of said vacancy. Membership vacancies on a county Democratic Executive Committee shall not be filled by action of the county Democratic Executive Committee within the period from the time the county Democratic Executive Committee chair position is declared vacant until the election of a new Democratic Executive Committee chair to replace the previous chair. In the event that a vacancy in the office of county Democratic Executive Committee chair is filled by a person of the same gender as the county Democratic Executive Committee vice chair, or vice versa, the requirement that they be of the opposite gender shall be waived for the unexpired term.</p>
+<p><strong>2.3 Leave of Absence:</strong> Unless otherwise prescribed in a county Democratic Executive Committee's bylaws, any officer of a county Democratic Executive Committee seeking public office may take a leave of absence from the county Democratic Executive Committee office commencing at the time of opening a campaign account for said public office and extending for the duration of the campaign. The vacancy created shall be filled by the county Democratic Executive Committee for the interim period.</p>
+<p><strong>2.4 Officer Vacancies:</strong> In the event of a vacancy in any elected officer position, other than Chair, in a county Democratic Executive Committee, a meeting to fill the vacancy shall be held within forty-five (45) days. Written notice of the meeting shall be provided to all members at least fifteen (15) days in advance. Notice of the vacancy shall be sent in writing (by certified mail or email) to the State Chair within ten (10) days of the vacancy.</p>
+<p><strong>2.5 Succession:</strong> Unless otherwise prescribed in a county Democratic Executive Committee's bylaws, in the event the Chair is absent, temporarily unable to perform the duties of the office, or the office of Chair becomes vacant, the powers and duties of the Chair shall be exercised on an acting basis in the following order: (1) Vice Chair; (2) Secretary; (3) Treasurer. An officer serving as Acting Chair under this Section shall have all powers and responsibilities necessary to conduct the business of the body, except for appointments, until the Chair resumes their duties or the vacancy is filled in accordance with these Bylaws.</p>
+<p><strong>2.6 Requirements:</strong> All county Democratic Executive Committee officers shall be required to deliver to their successors all records of the county Democratic Executive Committee within their possession.</p>
+<p><strong>SECTION 3. Meetings:</strong> County Democratic Executive Committees shall conduct their official business at General meetings and, when necessary, Special meetings held in accordance with this Section. Organizational meetings shall be conducted in accordance with Section 3.2. Meetings may be conducted in-person, virtually, or in a hybrid format, provided that any virtual or hybrid meeting is conducted in accordance with policies adopted by the county Democratic Executive Committee that ensure reasonable notice, member access, the ability to be heard and participate, and reliable vote counting.</p>
+<p>General meetings are the primary forum in which the county Democratic Executive Committee conducts its ongoing work. At General meetings, the committee shall, as applicable, adopt a budget, approve the minutes of prior meetings, receive and review the treasurer's financial report, act on membership applications, and consider other matters properly placed on the agenda; any business within the authority of the county Democratic Executive Committee may be transacted at a General meeting.</p>
+<p>Special meetings may be held to consider urgent or narrowly defined matters that cannot reasonably wait until the next regular General meeting. The call of a Special meeting shall clearly state the specific purpose(s) for which the meeting is convened, and business at any special meeting shall be limited to the purpose(s) stated in the call. Official actions of a county Democratic Executive Committee shall be taken only at General or Special meetings that are properly called and noticed in accordance with Sections 3.1.1 through 3.1.4 of this Article.</p>
+<p><strong>3.1.1 Call by the Chair:</strong> Unless otherwise prescribed in a county Democratic Executive Committee's bylaws, the Chair may call General meetings of the county Democratic Executive Committee upon written notice of no less than ten (10) days. Written notice shall be provided to all members and shall state the time, date, and place of the meeting. Special Meetings may be called upon written notice of no less than five (5) days. The notice shall state the time, date, and place of the meeting and shall specify the purpose(s) for which the meeting is called. Business at any Special meeting shall be limited to the purpose(s) stated in the notice. Except as otherwise provided in Sections 3.1.2 and 3.1.3 of this Article, all meetings of the county Democratic Executive Committee shall be called by the Chair.</p>
+<p><strong>3.1.2 Call by Petition:</strong> A Special meeting of the county Democratic Executive Committee shall be scheduled by the county Democratic Executive Committee Chair within twenty (20) days after receipt of a written petition signed by not less than thirty percent (30%) of the total membership of the county Democratic Executive Committee, exclusive of Automatic members as defined in Section 1.2 of this Article. A petition shall be considered valid if submitted in writing, whether by wet signature, email, or digital signature. Written notice of the time, date, place, and purpose of such Special meeting shall be given to all members at least fourteen (14) days prior to the meeting. Business at such a Special meeting shall be limited to the purpose(s) stated in the petition.</p>
+<p><strong>3.1.3 Call for Reorganization Meeting:</strong> If the State Chair determines that a county Democratic Executive Committee has failed to hold a General or Special meeting, with quorum, for a period of six (6) consecutive calendar months, the State Chair may direct the Congressional District Chair(s) and/or Congressional District Vice Chair(s) in which the county Democratic Executive Committee is primarily located to convene a reorganization meeting of the county Democratic Executive Committee.</p>
+<p>Upon written direction from the State Chair, the Congressional District Chair(s) and/or Congressional District Vice Chair(s) shall issue the call and provide written notice of at least fourteen (14) days to all members on the official membership list on file with the county Supervisor of Elections or the State Party. Notice may be provided by email and/or mail using the most current contact information available. The State Chair shall be provided with said notice.</p>
+<p><strong>3.2 Organizational Meeting:</strong> Each county Democratic Executive Committee shall hold an organization meeting, called by the county Democratic Executive Committee chair of the preceding committee, within thirty (30) days after said committee members take office.</p>
+<p><strong>3.2.1 Agenda:</strong> The organizational meeting shall be called to order by the county Democratic Executive Committee chair who shall chair the meeting until the election of the new chair who shall then assume the chair. The order of business shall be as follows:</p>
+<p>\(1\) Invocation</p>
+<p>\(2\) Pledge of Allegiance</p>
+<p>\(3\) Roll Call</p>
+<p>\(4\) Credentials Report</p>
+<p>\(5\) Election of Chair</p>
+<p>\(6\) Election of Vice Chair</p>
+<p>\(7\) Election of Secretary</p>
+<p>\(8\) Election of Treasurer</p>
+<p>\(9\) Election of Any Other Officers</p>
+<p>\(10\) Election of State Committee Members (unless the county has chosen to hold the election at a later date)</p>
+<p><strong>3.3 State Committee Member Election:</strong> All registered Democrats residing in Florida shall be eligible to run for state committee member in their county of residence through elections held by their respective county Democratic Executive Committee. The county Democratic Executive Committee members shall elect the state committee members from among the DEC membership and may also consider other county Democrats. It shall be the policy of each county that its elected representatives on the State Executive Committee reflect the diversity among the registered Democrats within the county. To that end, without limitation, each county shall establish as a minimum goal having members from a racial/ethnic group approximately equal to that group's percentage of the total registered Democrats in the county. Such goals, if any, of each county shall be applied to its quadrennial election of state committee members and to the filling of any subsequent vacancies, based on the most recent county data posted on the Florida Department of State website or such other source as the county chooses. Racial/ethnic and other historically underrepresented groups whose numbers in particular counties are not sufficient to qualify mathematically for a specified goal shall still be eligible for consideration under the general inclusion and outreach provisions of Article II, Section 2.1.4 of the Charter.</p>
+<p><strong>SECTION 4. Voting:</strong> Voting shall be one (1) vote for each member. Voting on all motions or other matters coming before a county Democratic Executive Committee shall take place in person, virtually, or by proxy. Electronic or telephonic procedures may be authorized by the county Democratic Executive Committee.</p>
+<p><strong>4.1 Voting by Appointed Members:</strong> The term of office for appointed members expires prior to the commencement of the organizational meeting occurring within thirty (30) days following the election of precinct committeemen and precinct committeewomen, therefore, appointed members shall not vote for officers at the organizational meeting. In the event an office becomes vacant during the term, appointed members shall have voting privileges.</p>
+<p><strong>SECTION 5. Policy and Procedure:</strong></p>
+<p><strong>5.1 Committees:</strong> County Democratic Executive Committees shall establish the following committees to further their goals and policies <del>of</del> the Florida Democratic Party:</p>
+<p><strong>5.1.1 Diversity and Inclusion Committee:</strong> Shall work in conjunction with the Florida Democratic Party Diversity and Inclusion Committee in developing diversity, inclusion, and outreach goals and programs for achieving full participation by such groups in the county DEC and among its state committee members. No later than April 1 of the year after the gubernatorial election, the committee shall submit an updated report delineating the current demographic composition of the county DEC and its state committee members, along with a diversity outreach and inclusion program as described in Article II, Section 2 of the Charter, with specific goals and timetables based on the county's Democratic electorate, to the county Democratic Executive Committees for approval.</p>
+<p><strong>5.1.2 Steering Committee:</strong> Shall be an operating and managing committee of the county Democratic Executive Committee. This committee may supervise, administer, and carry out business between meetings of the county Democratic Executive Committee and may take actions on behalf of the party only to the extent those actions are not inconsistent with applicable law, the Charter and Bylaws of the Florida Democratic Party, and the county Democratic Executive Committee's bylaws and adopted policies.</p>
+<p><strong>5.2 Diversity Outreach and Inclusion:</strong> Not later than June 1 of the year after the gubernatorial election, the county Democratic Executive Committee shall adopt and implement a diversity outreach and inclusion program based on the registered Democrats in the county as required by Article II, Section 2 of the Charter. It shall be the policy of the county DEC that the goals and timeline specified in the program will be applied to the recruitment and election of members of the county DEC, the quadrennial election of the county's state committee members, and to the filling of any subsequent vacancies. Failure to adopt a diversity outreach and inclusion program, implementation of such a program if adopted, and the demographic composition of the delegation of the county's state committee members shall be considered relevant evidence in an appeal to the Judicial Council. If a DEC has adopted and implemented such a program, the DEC shall not be subject to an appeal based solely on the demographic composition of its state committee delegation. Notwithstanding this section, no diversity outreach and inclusion program shall be accomplished directly or indirectly by the use or imposition of quotas.</p>
+<p><strong>5.3 Membership Lists:</strong> The names and addresses of the members of county Democratic Executive Committees, as well as the officers of same, shall be furnished to the State Chair immediately after the organizational meeting. Changes in membership shall be furnished in writing to the State Chair within ten (10) days. A complete and updated membership list shall be sent to the State Chair by January 31 of each year.</p>
+<p><strong>5.4 Records:</strong> Minutes shall be kept of all meetings and shall be presented at the next meeting for approval. Copies shall be sent to the State Chair within twenty (20) days following such meetings.</p>
+<p><strong>5.5 Annual Audit:</strong> There shall be annual audits of the financial condition of every county Democratic Executive Committee for each calendar year ending December 31 in compliance with applicable Florida Statutes and conducted by qualified examiners who shall not be members of the county Democratic Executive Committee. Audits shall be conducted in substantial compliance with standard accounting procedures. Copies shall be retained by the chair of each county Democratic Executive Committee for the examination of any member thereof and copies shall be furnished to the Supervisor of Elections and to the State Chair prior to April 1 of the ensuing year. The State Chair may have a qualified examiner conduct an audit of a county Democratic Executive Committee for any reason at the expense of the Florida Democratic Party.</p>
+<p><strong>5.6 FDP Policy Manual:</strong> The FDP shall make available to each County DEC a Policy Manual containing current standardized guidelines and practices for Party operations.</p>
+<p><strong>SECTION 6. Finances:</strong> A county Democratic Executive Committee receiving Party assessment fees shall submit a campaign plan detailing the expenditure of such fees to the State Chair for approval. Each county Democratic Executive Committee may raise and expend Party funds consistent with Florida Statutes and the Party's Bylaws. No Party funds may be spent or obligated without written authorization from the county Democratic Executive Committee Chair. The Chair and Treasurer are jointly responsible for ensuring funds are used only for proper Party purposes and that complete and accurate financial records and required reports are maintained. No member of a county Democratic Executive Committee shall receive a salary. No member of a county Democratic Executive Committee shall hold a contractual agreement with the county Democratic Executive Committee without the approval of the membership.</p>
+<p><strong>6.1 Distribution of Funds:</strong> A county Democratic Executive Committee may reimburse its members for reasonable and documented expenses incurred on behalf of the county Democratic Executive Committee, provided that such reimbursements:</p>
+<ol type="a">
+<li><p>are authorized in advance by the county Democratic Executive Committee Chair;</p></li>
+<li><p>reimbursement is expressly provided for within an approved line-item in the county Democratic Executive Committee's annual budget, and adopted in accordance with Section 6.2 of this Article; and</p></li>
+<li><p>are supported with appropriate receipts and documentation, and comply with any policies adopted to ensure financial transparency.</p></li>
+</ol>
+<p>A county Democratic Executive Committee may reimburse its State Committee Members for actual travel expenses incurred to attend regular or special meetings of the State Executive Committee or State Central Committee, when the meeting location is more than fifty (50) miles in each direction from the member’s home; provided that any such reimbursement complies with subsections (a) and (b) above (and the documentation requirements of this Section). Nothing in this Section shall be construed to require a county Democratic Executive Committee to reimburse travel expenses. If the county Democratic Executive Committee elects to reimburse mileage, it shall be reimbursed at no more than the IRS standard business mileage rate and must be supported by appropriate documentation. At the county Democratic Executive Committee's discretion, reimbursable travel expenses may also include other reasonable travel-related costs, so long as they are authorized, budgeted, and documented in accordance with this Section.</p>
+<p><strong>6.2 Budget:</strong> The county Democratic Executive Committee shall adopt an annual budget by majority vote at a noticed meeting within the first sixty (60) days of each calendar year. The adopted budget is the only authorization to spend party funds; spending must match the purposes and amounts in that budget. Any amendment to the budget, including new items, transfers, or increases/decreases, must be approved by a majority vote of the county Democratic Executive Committee at a noticed meeting before funds are committed. No officer, committee, staff, or agent may incur an obligation not covered by the adopted budget. At each county Democratic Executive Committee meeting, the Treasurer shall provide an up-to-date financial report.</p>
+<p><strong>SECTION 7. Party Assessment Fees:</strong> Party assessment fees shall be two percent (2%) of the annual salary of the office sought by the respective candidate. All assessments and candidate filing fees shall be remitted to the Florida Democratic Party and distributed as described herein and to promote the candidacy of Democratic candidates. Any county Democratic Executive Committee that endorses, or intends to endorse, certify, screen, or otherwise recommend one (1) or more candidates for nomination shall forfeit all party assessments and filing fees which would otherwise be returned to that county Democratic Executive Committee and such assessments/fees shall be remitted instead to the Florida Democratic Party State Executive Committee. The State Chair shall return the two percent (2%) party assessment fee and half of the candidate filing fee to the appropriate County Democratic Executive Committee upon the State Chair's determination that the County Democratic Executive is in compliance with all Florida Statutes and all Florida Democratic Party Charter, rules, and bylaws. The FDP shall return the two percent (2%) party assessment fee and half of the candidate filing fees within thirty (30) days of receipt from the respective County Supervisor of Elections.</p>
+  </div>
+</div>
+<div class="section" id="vi-article-vi-clubs-organizations-and-caucuses-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">VI</span>
+    <span class="sec-title">ARTICLE VI. CLUBS, ORGANIZATIONS, AND CAUCUSES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Statewide Clubs, Organizations and Caucuses:</strong> Organization of statewide Democratic clubs, organizations and caucuses shall be prohibited without the recommendation of the State Chair and a two-thirds vote of approval by the Central Committee, unless otherwise provided herein. The charter of such clubs, organizations and caucus shall be entirely within the jurisdiction of the State Democratic Party.</p>
+<p><strong>SECTION 2. Democratic Club Charters:</strong></p>
+<p><strong>2.1 Jurisdiction:</strong> The charter of a Democratic club shall be entirely within the jurisdiction of the county Democratic Executive Committee where the majority of the membership resides. A county Democratic Executive Committee shall not be authorized to establish a maximum number of Democratic clubs for said county.</p>
+<p><strong>2.2 Requirement for Chartering:</strong> It shall be the duty of the county Democratic Executive Committees to provide Democratic clubs with copies of the standard bylaws, applications for chartering and recertification and procedural guidelines for same, and any other forms and information necessary for establishing and operating said club. Democratic club bylaws shall be in compliance with county Democratic Executive Committee bylaws, the Charter and Bylaws of the Florida Democratic Party, and Florida Statutes and shall include the following, unless otherwise provided herein; the anti-discrimination policies of the Florida Democratic Party, a provision prohibiting endorsement in primary elections and prohibiting the endorsement of anyone other than the Democratic nominee in general elections, a provision requiring votes by secret ballot for officers and directors only; a provision for adding amendments to the standard bylaws, a provision prohibiting proxy voting, and a provision that the quorum of any meeting of a Democratic club shall be ten percent (10%) or twenty percent (20%) based on the total membership of the club. With the exception of the organizational meeting, the standard club bylaws shall include a forty-five (45) day membership requirement prior to a member being permitted to vote or participate in any club election for officers or board members. Prior to being chartered, prospective clubs must submit a packet including but not limited to a copy of the completed standard bylaws, an application for a charter, and a list of officers and members to the Certification Committee, composed of the chair and two (2) state committee members of the Democratic Executive Committee in the county in which the club is to be chartered. Should one (1) person hold two (2) of these offices, the vice chair of the county Democratic Executive Committee shall be a member of the Certification Committee. With at least two (2) of the county Democratic Executive Committee officers signing the application, a recommendation to approve or to reject the club shall be submitted to the county Democratic Executive Committee for ratification. Upon approval, the signed application for charter and the club packet of information shall be sent by the county Democratic Executive Committee chair to the State Chair and to the Chair of the Committee on Clubs, Organizations, and Caucuses. The Committee on Clubs, Organizations, and Caucuses shall review the packet and shall recommend approval or disapproval to the State Chair. Once the State Chair approves, the Central Committee shall make the final decision. Certificates of charter for approved clubs shall be sent to the appropriate county Democratic Executive Committee chair for presentation to the club.</p>
+<p><strong>2.3 Charter Recertification:</strong> In July of every odd numbered year, Democratic Clubs shall submit an application for a Certificate of Compliance to determine their compliance with the Charter and Bylaws of the Florida Democratic Party, Florida Statutes, and bylaws of the county Democratic Executive Committee. Clubs shall submit a packet including, but not limited to, an application<del>s</del> for recertification with a copy of their current bylaws, officers, and membership to the Certification Committee. The Certification Committee shall review the application and bylaws and shall issue a Certificate of Compliance unless it is determined the club is in violation of the Charter and Bylaws of the Florida Democratic Party, Florida Statutes, or the bylaws of the county Democratic Executive Committee. If it is determined a club is in violation, it shall be so notified and shall have sixty (60) days from receipt of notification to correct the violations(s). If the violations(s) is not corrected by the end of the said period, the Certification Committee may recommend the revocation of the club’s charter to the county Democratic Executive Committee. In the event such recommendation is made, said club shall be so notified. Notice of revocation shall also be given to the State Chair and to the Chair of the Committee on Clubs, Organizations, and Caucuses. Charter revocation shall result in the forfeiture of all rights and privileges of the use of the word Democrat, Democratic, or derivative thereof.</p>
+<p><strong>2.4 Membership:</strong> A county Democratic Executive Committee may require a Democratic club to have a minimum number of members prior to chartering, unless otherwise provided herein.</p>
+<p><strong>2.5 Annual Party Contribution:</strong> In January of each year, each Democratic club chartered under the rules of the Florida Democratic Party shall pay an annual contribution based on membership as of December 31 of the preceding year to the Democratic Executive Committee in the county of charter based on the following:</p>
+<p>Clubs with 0 to 50 members \...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\..... \$25.00</p>
+<p>Clubs with 51 to 100 members\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\.....50.00</p>
+<p>Clubs with 101 to 300 members \...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\.....75.00</p>
+<p>Clubs with 301 to 500 members\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\... 100.00</p>
+<p>Clubs with 501 to 750 members\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\... 150.00</p>
+<p>Clubs with 751 to 1000 members \...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\... 250.00</p>
+<p>Clubs with over 1000 members \...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\...\... 500.00</p>
+<p>Any club chartered after January 1, 1985, will pay a contribution based on the number of members at the time of chartering which is consistent with the annual party contribution fee schedule.</p>
+<p>Eighty percent (80%) of the contribution shall remain with the county Democratic Executive Committee and twenty percent (20%) shall be remitted to the Florida Democratic Party no later than April 1 of that year.</p>
+<p><strong>2.6 Grievances:</strong> Unless otherwise provided herein, disputes and grievances involving Democratic clubs may be resolved in accordance with Article IX, Section 3. Such resolution may be appealed to the Judicial Council no later than forty-five (45) days from the date of said decision, in accordance with Article II, Section 5.7.2. Democratic club appeals may also be referred to the Committee on Clubs, Organizations, and Caucuses, in accordance with Article II, Section 5.5.2.1.</p>
+<p><strong>2.7 Dissolution:</strong> Upon dissolution of a club for any reason, the club’s assets and funds, after all debts have been satisfied, shall become the property of the county Democratic Executive Committee in the county of charter.</p>
+<p><strong>SECTION 3. Chartered Caucuses:</strong></p>
+<p>The bylaws of all chartered caucuses shall be in compliance with the Charter and Bylaws of the Florida Democratic Party and Florida Statutes. Notwithstanding the provisions of other sections of the Bylaws of the Florida Democratic Party, the rules and procedures for chartering county chapters of chartered caucuses shall be governed by the provisions set forth herein. Each chartered caucus shall submit a Certification of Compliance to the Central Committee in July of every odd numbered year. The Certification of Compliance shall include, but not limited to, a copy of the chartered caucus’s current bylaws, a list of its officers, a list of its local chapters and their officers, and a general summary of the chartered caucus' sponsored events and activities during the preceding twelve (12) months.</p>
+<p><strong>3.1 Charter:</strong> The charter of all caucuses and all changes and amendments thereto, shall be approved by the Central Committee. The Central Committee may suspend or revoke the charter upon violation of the provisions of the Charter or Bylaws of the Florida Democratic Party.</p>
+<p><strong>3.2 Local Chapters:</strong> Any chartered caucus shall have the authority, subject to the provisions set forth herein, to charter local chapters at the county level. The bylaws of such chapters shall be in compliance with the Charter and Bylaws of the Florida Democratic Party, Florida Statutes, and the bylaws of the caucus under which the county chapter is seeking to affiliate.</p>
+<p><strong>3.2.1 Charter Procedure:</strong> Proposed local chapters shall apply to the State Caucus President of the caucus for charters. Upon approval, the State Caucus President shall submit a proposed charter to the Caucus officers for approval. Upon final approval of said charter, the State Caucus President shall notify the Chair of the county Democratic Executive Committee and the State Party Chair. Upon final approval, the signed application for charter and the caucus packet of information shall be sent by the State Caucus to the State Party Chair and to the Chair of the Committee on Clubs, Organizations, and Caucuses. The Clubs, Organizations and Caucuses Committee shall review the packet and shall recommend approval or disapproval to the State Party Chair. Once the State Chair approves, the Central Committee shall make the final decision. Certificates for charter for approved local caucus chapters shall be sent to the State Caucus for presentation to the local chapter.</p>
+<p><strong>3.2.2 Charter Recertification:</strong> Local chapters shall apply to their State Caucus for charter recertification in July of every odd numbered year. Chapters shall submit a packet of information, including but not limited to applications for recertification and copies of their current bylaws, officers, and membership. If it is determined a local caucus chapter is in violation, it shall be so notified and shall have sixty (60) days from receipt of notification to correct the violations(s). If the violation(s) is not corrected by the end of the said period, the State Caucus may recommend the revocation of the local caucus chapter's charter. In the event such recommendation is made, said local caucus chapter shall be so notified. Notice of revocation shall also be given to the State Chair, the Chair of the County Democratic Executive Committee and to the Chair of the Committee on Clubs, Organizations, and Caucuses. Charter revocation shall result in the forfeiture of all rights and privileges of the use of the word Democrat, Democratic, or derivative thereof. Failure to be recertified may be appealed to the State Chair by the president of the applicable local chapter or the president of the caucus..</p>
+<p><strong>3.2.3 Grievances:</strong> Unless otherwise provided herein, disputes and grievances involving Democratic caucus chapters may be resolved by the president and officers of the State Caucus. Such resolution may be appealed to the Judicial Council no later than forty-five (45) days from the date of said decision. Caucus appeals may also be referred to the Committee on Clubs, Organizations, and Caucuses, in accordance with Article II, Section 5.5.2.1.</p>
+<p><strong>3.2.4 Dissolution:</strong> Upon dissolution of a local caucus chapter for any reason, the local caucus chapter’s assets and funds, after all debts have been satisfied, shall become the property of the State Caucus of charter.</p>
+  </div>
+</div>
+<div class="section" id="vii-article-vii-state-conventions-gubernatorial-co-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">VII</span>
+    <span class="sec-title">ARTICLE VII. STATE CONVENTIONS & GUBERNATORIAL CONFERENCES</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Delegates:</strong> Elected delegate positions for Florida Democratic Party conventions and conferences shall be apportioned by county based upon Democratic voter registration and Democratic strength. The Florida Democratic Party State Executive Committee may provide for automatic or appointed positions.</p>
+  </div>
+</div>
+<div class="section" id="viii-article-viii-amendments-bylaws-and-rules-byla-2">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">VIII</span>
+    <span class="sec-title">ARTICLE VIII. AMENDMENTS, BYLAWS, AND RULES/BYLAWS</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Rules/Bylaws:</strong> The rules or bylaws of official components of the Florida Democratic Party and any changes or amendments thereto, shall be filed with the Florida Democratic Party within thirty (30) days following adoption.</p>
+  </div>
+</div>
+<div class="section" id="ix-article-ix-code-of-conduct">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">IX</span>
+    <span class="sec-title">ARTICLE IX. CODE OF CONDUCT</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Authorization and Purpose:</strong> The Florida Democratic Party shall adopt a uniform Code of Conduct that shall apply to all Party officials, officers, staff, elected Democratic officials, volunteers, candidates, in addition to members of the State Executive Committee, State Central Committee, County Democratic Executive Committees, and Democratic clubs/caucuses.</p>
+<p><strong>SECTION 2. Oversight:</strong> The FDP Rules Committee shall have authority to propose amendments to the Code and to make written interpretations of the Code, provided they uphold its intent. Party officials shall not have the authority to modify or waive any provision of the Code except as expressly authorized by the FDP Rules Committee.</p>
+  </div>
+</div>
+<div class="section" id="x-article-x-grievance-policy">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">X</span>
+    <span class="sec-title">ARTICLE X. GRIEVANCE POLICY</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Authorization and Purpose:</strong> The Florida Democratic Party hereby adopts a uniform Grievance Policy that shall apply to all Party officials, officers, staff, elected Democratic officials, volunteers, candidates, in addition to members of the State Executive Committee, State Central Committee, County Democratic Executive Committees, and Democratic clubs. The Rules Committee, upon approval of the Central Committee, may adopt rules of procedures which are consistent with these Bylaws and are necessary to assist in the orderly conduct of mediations and grievances.</p>
+<p><strong>1.1 Exception:</strong> Any county Democratic Executive Committee that has a written grievance policy in its bylaws must submit it to the FDP Rules Committee for review for compliance. If the Rules Committee determines it does not comply with Article X, the county Democratic Executive Committee shall follow the uniform grievance policy outlined in Article X. An appeal of a Rules Committee decision shall be to the Judicial Council.</p>
+<p><strong>SECTION 2. Oversight and Jurisdiction:</strong> Oversight of the Grievance Policy shall be exercised through the following bodies. If multiple bodies appear to have overlapping jurisdiction, the Judicial Council Chair shall determine venue within ten (10) days:</p>
+<ol type="a">
+<li><p>County Democratic Executive Committees shall maintain primary jurisdiction over grievances arising within their membership and Democratic Clubs within their county, as outlined in Article X, Section 3.</p></li>
+<li><p>Judicial Council shall maintain primary jurisdiction over grievances arising within the State Executive Committee, State Central Committee, and provisions of the FDP Charter and Bylaws.</p></li>
+<li><p>Notwithstanding Article VI, Section 3.2.3, grievances arising within caucuses shall be addressed by those organizations under their bylaws. In cases where a caucus lacks a grievance process, the FDP Judicial Council shall have jurisdiction.</p></li>
+</ol>
+<p><strong>SECTION 3. Eligibility to File Grievance:</strong> Only current members of a county Democratic Executive Committee, the State Executive Committee, the State Central Committee, or a Democratic club may file a grievance based on a direct or reasonably perceived injury, harm, or violation of their rights under Party rules or the Code of Conduct. Grievances must be submitted in writing within thirty (30) days of the incident, with the period running from the time the facts giving rise to the grievance were discovered or should have been discovered with the exercise of due diligence. Each grievance should clearly explain the conduct that allegedly violated the Code of Conduct, county Democratic Executive Committee bylaws, and/or the Charter and Bylaws of the Florida Democratic Party, identify the Party members involved, and include the approximate time and place of the incident. The grievance must also include an affirmation that the complaint is being made in good faith. This means the complainant genuinely believes the grievance is valid and is not submitting it to harass, retaliate, or mislead. Filing a grievance known to be false or frivolous shall result in dismissal and a violation of the Code of Conduct. The Judicial Council shall issue its decision within ten (10) days following the conclusion of the hearing.</p>
+<p><strong>3.1 County Democratic Executive Committee Grievance:</strong> Grievances shall be submitted to the county Democratic Executive Committee Chair in writing as outlined in the county's bylaws. If the county Democratic Executive Committee Chair is a subject of the complaint, the grievance must be sent to the Vice Chair. If both the county Democratic Executive Committee Chair and Vice Chair are subjects of the complaint, the Judicial Council Chair shall appoint a "Designated County Officer" within five (5) days of notice of the conflict. The Designated County Officer must be a current elected officer of the county Democratic Executive Committee who is not a party or complainant in the matter, and shall carry out the duties otherwise assigned in this Article to the Chair or Vice Chair for that grievance. In both cases, the county Democratic Executive Committee must forward a copy to the State Chair for official recordkeeping.</p>
+<p>Receipt and Initial Review (Day 0 -- Day 5): In accordance with Section 3.1.1, within five (5) days of receiving a written grievance, the county Democratic Executive Committee Chair (Vice Chair or Designated Officer, if conflicted) shall acknowledge receipt in writing to all parties and determine whether the grievance meets the filing and jurisdictional requirements under Section 3.1.1. If a deficiency notice is issued, the correction period runs from Day 6 -- Day 10. If deficiencies are found, the complainant shall be notified in writing and granted five (5) additional days to correct them.</p>
+<p>Mediation Scheduling (Day 6 -- Day 23): In accordance with Section 3.1.2, if the grievance is accepted, the Chair shall refer it to mediation within five (5) days of acceptance. The mediation session shall be held within ten (10) days of the referral unless either party requests an extension not to exceed an additional fourteen (14) days. The mediator must provide a brief written statement of resolution or impasse within three (3) days of the session. If a deficiency cure period is used and the grievance is accepted on Day 10, then mediation runs Day 11 -- Day 28.</p>
+<p>Scheduling of Grievance Hearing (Day 24 -- Day 43): In accordance with Section 3.1.3, if mediation does not result in resolution, the Chair (Vice Chair or Designated Officer, if conflicted) shall appoint a three-member Grievance Committee within five (5) days of the mediator's report. The Committee shall schedule a hearing to occur within fourteen (14) days of appointment and provide at least ten (10) days' written notice to all parties of the date, time, and format of the hearing. A written recommendation shall be issued within five (5) days after the hearing concludes. To satisfy the 10-day notice requirement and stay within the 45-day overall timeframe, the schedule should be: appoint the committee no later than Day 28; send notice the same day; hold the hearing on or after Day 38; and issue the written recommendation by Day 43.</p>
+<p>Overall Timeframe: Except where extensions are mutually agreed upon, the entire county Democratic Executive Committee grievance process --- from receipt to final committee recommendation --- should be completed within forty-five (45) days. Accordingly, the target is completion by Day 45, measured from Day 0.</p>
+<p><strong>3.1.1 Grievance Review:</strong> The county Democratic Executive Committee Chair (Vice Chair or Designated Officer, if conflicted) shall dismiss any grievance raised that falls within the following circumstances:</p>
+<ol type="a">
+<li><p>it does not fall within the jurisdiction of the county Democratic Executive Committee;</p></li>
+<li><p>it is brought by person(s) who lack standing because they are not a current member of the county Democratic Executive Committee;</p></li>
+<li><p>it fails to state a valid grievance;</p></li>
+<li><p>the same grievance has been previously resolved;</p></li>
+<li><p>there is no evidence in support of the grievance;</p></li>
+<li><p>there is an adequate remedy pursuant to state law or Party rule or procedure available to the challengers that has not been exhausted; or</p></li>
+<li><p>the grievance is frivolous and/or retaliatory.</p></li>
+</ol>
+<p>A written opinion to the parties shall accompany any dismissal. The county Democratic Executive Committee Chair (Vice Chair or Designated Officer, if conflicted) may consult with the Chair of the FDP Rules Committee on their decision.</p>
+<p>Within ten (10) days after the dismissal opinion is sent to the petitioner, the petitioner may file an Appeal with the FDP Judicial Council stating the specific objections to the dismissal. The Judicial Council Chair shall allow each party to submit written arguments. The Judicial Council shall review the dismissal solely under the standards outlined in Article X, Section 3.1.1, and may, by majority vote, affirm the dismissal or overturn it and remand the matter to the county Democratic Executive Committee for mediation or hearing before a grievance committee. The decision of the Judicial Council shall be final within the Party's grievance process.</p>
+<p><strong>3.1.2 Mandatory Mediation:</strong> Upon receipt of a grievance, and before any hearing may be scheduled, the county Democratic Executive Committee Chair (Vice Chair or Designated Officer, if conflicted) shall refer the matter to mediation. The mediation shall be conducted by a neutral Party member agreed upon by both parties, or if no agreement is reached within fourteen (14) days, by a mediator appointed at random by the county Democratic Executive Committee Chair (Vice Chair or Designated Officer, if conflicted). Mediation shall occur within fourteen (14) days of the grievance being filed unless both parties jointly request an extension. The mediator must not be a witness or officer in the same county Democratic Executive Committee and shall sign a neutrality and confidentiality agreement.</p>
+<p>Both parties must make a good-faith effort to resolve the issue through mediation. Failure by either party to participate in good faith shall be documented and may be considered by the Grievance Committee in any subsequent hearing.</p>
+<ol type="a">
+<li><p>If mediation results in a written resolution signed by all parties, the grievance shall be deemed resolved, and no hearing shall be held.</p></li>
+<li><p>If mediation is unsuccessful or either party declines to sign a resolution, the grievance shall proceed to a hearing in accordance with Section 3.1.2.</p></li>
+</ol>
+<p><strong>3.1.3 Grievance Committee Hearing:</strong> Within fourteen (14) days of receipt of a grievance, the county Democratic Executive Committee Chair (Vice Chair or Designated Officer, if conflicted) will appoint a three-person committee to handle the grievance and call a meeting to hear evidence and make a recommendation on the issues raised. This committee shall include the Vice Chair, one State Committee member selected at random drawing, and one DEC member also selected by random drawing. If any appointee is involved in the grievance as a party or witness, they will be replaced by another randomly selected member.</p>
+<p>A notice of hearing shall be sent by the Vice Chair to the petitioner stating the time, date, and place of said hearing. The Grievance Committee, after hearing all evidence and affording all parties a full opportunity to be heard, shall deliberate, render judgment on the grievance by a majority vote, and issue a written recommendation.</p>
+<p>If the Committee recommends action against a party subject to the grievance, the county Democratic Executive Committee must vote on whether to accept those recommendations. The vote will take place at the next regular or specially called meeting, with at least ten (10) days' notice to all members. A two-thirds (2/3) vote of the members present and voting is required for adoption. Sanctions may include a formal reprimand, removal from a committee or officer position, suspension of privileges, or removal from membership, in accordance with Article I, Section 2.1.</p>
+<p><strong>3.2 State Executive Committee Grievance:</strong> Grievances shall be submitted directly to the State Chair or their designee, who will immediately forward them to the Chair of the Judicial Council.</p>
+<p><strong>3.2.1 Mediation (Pre-Hearing Conference):</strong> Upon receipt of a grievance, and before any hearing may be scheduled, the Judicial Council Chair may refer the matter to mediation. The mediation shall be conducted by the Judicial Council Chair or a Hearing Officer designated by the Judicial Council Chair. Both parties must make a good-faith effort to resolve the issue through mediation. Failure by either party to participate in good faith shall be documented and may be considered by the Judicial Council in any subsequent hearing.</p>
+<ol type="a">
+<li><p>If mediation results in a written resolution signed by all parties, the grievance shall be deemed resolved, and no hearing shall be held.</p></li>
+<li><p>If mediation is unsuccessful or either party declines to sign a resolution, the grievance shall proceed to a hearing in accordance with Section 3.2.2.</p></li>
+</ol>
+<p><strong>3.2.2 Judicial Council Hearing:</strong> Within thirty (30) days of receipt of a grievance, the chair of the Judicial Council shall call a meeting to hear evidence and render judgment on the issues raised. A notice of hearing shall be sent by the chair of the Judicial Council to the petitioner stating the time, date, and place of said hearing. Any member of the Judicial Council who is a party to or a witness in the grievance shall recuse themselves from the hearing and any related deliberations or vote. The Judicial Council, after hearing all evidence and affording all parties a full opportunity to be heard, shall deliberate, render judgment on the grievance by a majority vote, and issue a written decision. The Judicial Council shall issue its decision within ten (10) days following the conclusion of the hearing.</p>
+<p><strong>SECTION 4. Sanctions:</strong> Available sanctions under both county Democratic Executive Committees and the State Executive Committee grievance may include: a written warning or reprimand; removal from an appointed position; temporary suspension of voting rights or participation in party activities; removal from a Party-elected office consistent with Article I, Section 2.1 of the Bylaws; disqualification from running for party office in the future. If the committee/council determines a grievance was filed in bad faith, the person who submitted it may be subject to similar sanctions.</p>
+<p><strong>SECTION 5. Appeals:</strong> Any final decision may be appealed in accordance with Article II, Section 5.5.4. For county Democratic Executive Committee grievances, appeals shall go to the FDP Judicial Council, in accordance with Article II, Section 5.5.6. For State Executive Committee grievances, appeals go to the State Central Committee, in accordance with Article II, Section 5.5.7. Appeals must be filed within ten (10) days of receipt of the decision and under the clear error standard --- meaning the Judicial Council or Central Committee will only overturn a grievance decision if it is firmly determined that the original committee made a procedural violation.</p>
+<p>All grievance proceedings, including mediations, hearings, evidence, and committee discussions, will remain confidential unless information must be disclosed for enforcement or appeals. The Party will maintain all grievance records securely to ensure transparency and accountability without compromising privacy. Aggregate statistics on grievances may be publicly disclosed while maintaining the confidentiality of identities.</p>
+  </div>
+</div>
+<div class="section" id="xi-article-xi-candidate-qualifying-for-presidentia">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">XI</span>
+    <span class="sec-title">ARTICLE XI. CANDIDATE QUALIFYING FOR PRESIDENTIAL PREFERENCE PRIMARY</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>SECTION 1. Purpose of Candidate Qualifying Requirements:</strong> The Florida Democratic Party finds it necessary for Democratic presidential candidates to make a preliminary showing of substantial support to qualify for a place on the presidential preference primary ballot. The provisions of Article XII are intended to accomplish the party's legitimate objectives through reasonable and non-discriminatory restrictions on ballot access.</p>
+<p><strong>1.1 Form of Democratic Presidential Candidate Oath:</strong> Each Democratic presidential candidate, in order to have his or her name submitted to the Secretary of State for placement on the presidential preference primary ballot under section 103.101(2) of the Florida Statutes, shall take or subscribe to an oath or affirmation in writing. A copy of the oath or affirmation shall be made available to the candidate upon request to the Florida Democratic Party. It shall be substantially in the form set forth herein.</p>
+<p><strong>1.2 Qualifying Period:</strong> The qualifying period for Democratic presidential candidates shall be established by the State Executive Committee at a regular or special meeting held in the calendar year preceding the presidential preference primary. By majority vote, the State Executive Committee shall set the opening and closing dates and times of the qualifying period, which shall be of a reasonable duration and consistent with applicable law and the deadlines imposed by the Secretary of State.</p>
+<p><strong>SECTION 2. Methods of Qualifying for Presidential Preference Primary Ballot:</strong> Each Democratic presidential candidate seeking to appear on the presidential preference primary ballot shall qualify by meeting one of the following tests:</p>
+<p><strong>2.1 State Convention or Designated Statewide Event Option:</strong> For any candidate invited to attend a statewide event designated by the State Executive Committee for the purpose of presidential candidate qualifying, the candidate shall qualify through either a personal appearance by the candidate, or an appearance by a approved designated surrogate authorized in writing by the candidate, at such event to present and file the Candidate Oath prescribed by Article XII, executed by the candidate, which the State Chair or their designee shall witness. If a surrogate appears on the candidate's behalf, the surrogate's written designation shall be submitted at the time of filing. No straw polls, informal preference votes, or nonbinding presidential preference ballots regarding Democratic presidential candidates shall be conducted as part of the State Convention or any other statewide event designated for qualifying under this Section; or</p>
+<p><strong>2.2 Qualifying Fee Option:</strong> Qualify by filing with the Florida Democratic Party the Candidate Oath prescribed by Article XII and a non-refundable candidate qualifying fee made payable to the Florida Democratic Party in the amount of two thousand five hundred dollars (\$2,500). Any qualifying fees collected under Article XII will be devoted entirely to grassroots engagement activities in support of the Democratic Party's candidates in the General Election.</p>
+<p><strong>SECTION 3. Ratification of Presidential Candidates:</strong> After the close of the qualifying period established under Section 1.2 and upon confirmation that a Democratic presidential candidate has satisfied the requirements of Article XII, the State Chair shall prepare a list of all such qualified candidates and submit that list to the State Executive Committee for ratification. The State Executive Committee shall ratify the list of qualified presidential candidates at a regular or special meeting, or by any other voting procedure authorized elsewhere in these Bylaws, held prior to the deadline for submission to the Secretary of State. Ratification shall require a majority vote of those members present and voting.</p>
+<p><strong>SECTION 4. Submission of List of Presidential Candidates:</strong> By November 30 of the year preceding the presidential preference primary, or by such earlier date as may be required by law or by the Secretary of State, the Florida Democratic Party shall submit to the Secretary of State a list of its presidential candidates who the State Executive Committee has ratified for the Democratic presidential preference primary ballot in accordance with Article XII.</p>
+  </div>
+</div>
+<div class="section" id="a1-attachment-1-proxy-form">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">A1</span>
+    <span class="sec-title">Attachment 1 — Proxy Form</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p>I hereby appoint as my proxy to attend the</p>
+<p><em>(Print name of proxy holder)</em></p>
+<p>meeting to be held on</p>
+<p><em>(Name of meeting) (Date of meeting)</em></p>
+<p>in to vote on any and all matters and to do any and all acts that I could do if present.</p>
+<p><em>(City)</em></p>
+<p><em>Member's Name (print) County</em></p>
+<p><em>Member's Signature Date</em></p>
+  </div>
+</div>
+<div class="section" id="a2-attachment-2-loyalty-oath">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">A2</span>
+    <span class="sec-title">Attachment 2 — Loyalty Oath</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p><strong>Florida Democratic Party</strong></p>
+<p><strong>LOYALTY OATH</strong></p>
+<p>County of , Florida</p>
+<p>I, <u>______________________________________</u> having been duly sworn, say that I am a member of the Democratic Party,</p>
+<p>that I am a qualified elector of__________________County, Florida; that during my term of office, I will not support the election</p>
+<p>of the opponent of any Democratic nominee, I will not oppose the election of any Democratic nominee, nor will I support any non-Democrat against a Democrat in any election other than in judicial races; that I am qualified under the Constitution and Laws of the State of Florida and the Charter and Bylaws of the Florida Democratic Party to hold the office I am seeking, or to which I have been elected; that I have not violated any of the laws of the State of Florida relating to election or the Charter and Bylaws of the Florida Democratic Party.</p>
+<p><em>Print Name</em></p>
+<p><em>Signature</em></p>
+<p><strong>OPTION 1. SIGNED BY A NOTARY PUBLIC</strong></p>
+<p><em>(Use either Option 1 OR Option 2.)</em></p>
+<p><strong>OPTION 2. SIGNED BY TWO WITNESSES</strong></p>
+<p><em>(Use either Option 1 OR Option 2.)</em></p>
+<div class="notice-box">
+<p>&gt;                               | &gt; _______________</p>
+<p> _______________ | _________________</p>
+<p>_______________\ | ____________***WITNESS</p>
+<p>___________<strong><em>WITNESS | &gt; #2:</strong> Signature</em></p>
+<p>&gt; #1:** Signature*              | &gt;</p>
+<p>&gt;                               | &gt; _______________</p>
+<p>&gt;                               | _________________</p>
+<p> _______________ | ____________***WITNESS</p>
+<p>_______________\ | &gt; #2:** Print Name*</p>
+<p>___________***WITNESS | &gt;</p>
+<p>&gt; #1:** Print Name*             | &gt; _______________\</p>
+<p>&gt;                               | _________________\</p>
+<p>&gt;                               | ____________<em>Signature</em></p>
+<p>_______________\ | &gt;</p>
+<p>________________ | &gt; ______________\</p>
+<p>__________<em>Signature</em> | _________________\</p>
+<p>&gt;                               | _____________<em>Address</em></p>
+<p>&gt; ______________\ | &gt;</p>
+<p>________________ | &gt; _____________</p>
+<p>___________<em>Address</em> | _________________</p>
+<p>&gt;                               | ______________*City,</p>
+<p>&gt; _____________    | &gt; State, and Zip Code*</p>
+<p>_______________\</p>
+<p>_____________*City,</p>
+<p>&gt; State, and Zip Code*</p>
+</div>
+  </div>
+</div>
+<div class="section" id="a3-attachment-3-form-of-democratic-presidential-ca">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">A3</span>
+    <span class="sec-title">Attachment 3 — Form of Democratic Presidential Candidate Oath</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p>I,_________________________________________________________, am a candidate for the Democratic Party's nomination for the office of President of the United States of America. I hereby request that the Florida Democratic Party include my name on the list of presidential candidates to be placed on Florida's Democratic presidential preference primary ballot.</p>
+<p>_________________________________________________________</p>
+<p>Signature of Candidate</p>
+<p>_________________________________________________________</p>
+<p>Signature of Witness</p>
+<p>STATE OF FLORIDA</p>
+<p>COUNTY OF__________________________________</p>
+<p>Sworn to (or affirm) and subscribed before me this day of <u>,</u> 20 <u>.</u></p>
+<p><u>\ </u></p>
+<p>Signature of Notary Public _________________________________________________________</p>
+<p>Personally Known:__________ or</p>
+<p>Produced Identification: __________</p>
+<p>Type of Identification Produced: _____________________________</p>
+<p>height="0.8111800087489064in"}</p>
+  </div>
+</div>
+<div class="section" id="a4-code-of-conduct-for-the-florida-democratic-part">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">A4</span>
+    <span class="sec-title">Code of Conduct for the Florida Democratic Party</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<p>for the</p>
+<p>Florida Democratic Party</p>
+<p><strong>Table of Contents</strong></p>
+<p>Commitment to Respect and</p>
+<p>Prohibition against Harassment and</p>
+<p>Professionalism and</p>
+<p>Retaliation</p>
+<p>Conflict of</p>
+<p>Commitment to a Safe</p>
+<p>Alcohol, Drugs, and</p>
+<p>Affirmation of</p>
+<p>Shared</p>
+<p><strong>Preamble</strong></p>
+<p>The Florida Democratic Party is committed to fostering an inclusive, respectful, and welcoming environment for all individuals who participate in Party activities. Our strength lies in the diversity of our members and the shared belief in fairness, equality, and justice. To uphold these values, all Party members, officers, staff, elected Democratic officials, volunteers, candidates and participants in Party activities, including activities of Democratic Party (DECs, State and local clubs and caucuses), organizations and Democratic affiliated political committees across the State of Florida, must conduct themselves in a manner that promotes mutual respect and reflects positively on our Party.</p>
+<p>This Code of Conduct does not anticipate every situation or answer every question, but clearly states behaviors that will not be tolerated by the Party, and establishes a set of expectations about how we will act and treat one another.</p>
+<p><strong>Commitment to Respect and Inclusion</strong></p>
+<p>The Florida Democratic Party affirms that every individual has the right to participate in Party events, meetings, and activities free from discrimination, harassment, or intimidation. <em>Discrimination based on race, color, creed, sex, age, religion or lack thereof, economic status, ethnic identity, national origin, disability, or sexual orientation or gender identity and expression</em> is prohibited. We expect all participants to treat one another with dignity and to respect the personal boundaries and identities of others.</p>
+<p>This Code applies to all Party-sponsored or affiliated offices, venues, functions, and events, whether in person or virtual, and includes <em>Party-related communications</em> such as email, text, social media, and other online platforms.</p>
+<p>In addition to these protections, participants are expected to act lawfully, honestly, and in a way that does not bring the Party into disrepute. Our conduct, internally and externally, must reflect the spirit of the Party and our shared values. Actions taken by Party members outside the Party context can and often will reflect on the Party.</p>
+<p>Robust and passionate debate on policy and governance is encouraged, but disagreement must never devolve into intimidation or ad hominem personal attacks.</p>
+<p><strong>Prohibition against Harassment and Bullying</strong></p>
+<p>Harassment in any form will not be tolerated. Harassment includes unwelcome advances, inappropriate physical contact, sexual comments, demeaning language, threats, witness intimidation in connection with a grievance or appeal process, or any behavior that creates a hostile or unsafe environment. The Party maintains a zero-tolerance policy for sexual harassment and gender-based misconduct.</p>
+<p>Harassment includes not only verbal, physical, or digital misconduct, but also the misuse of Party processes to target, intimidate, or silence others.</p>
+<p>Prohibited harassment includes:</p>
+<ul>
+<li><p>Filing frivolous, bad-faith, or repetitive grievances without merit in order to burden or intimidate another member;</p></li>
+<li><p>Initiating or threatening lawsuits against the Party or its members with no substantial basis in fact or law, for the purpose of coercion, retaliation, or disruption;</p></li>
+<li><p>Coordinating or encouraging others to file knowingly false complaints;</p></li>
+<li><p>Retaliating against individuals who file legitimate grievances or participate in investigations.</p></li>
+</ul>
+<p>The Florida Democratic Party will not tolerate abuse of its grievance system or the legal process as a means of harassment. Members found to have engaged in such conduct may be subject to sanctions, including dismissal of the grievance, suspension of rights, or removal from office, in accordance with Party rules.</p>
+<p>Bullying is likewise prohibited. Bullying is repeated, aggressive, or harmful behavior---verbal, written, digital, or physical---that is intended to intimidate, belittle, exclude, or dominate another individual. Bullying may include, but is not limited to:</p>
+<ul>
+<li><p>Persistent personal attacks, insults, or name-calling;</p></li>
+<li><p>Spreading rumors or false information with the intent to cause harm;</p></li>
+<li><p>Deliberately excluding or isolating someone from Party activities or communications;</p></li>
+<li><p>Using social media, email, or other digital platforms to repeatedly target or harass another member;</p></li>
+<li><p>Abusing power, position, or authority to silence or punish others unfairly.</p></li>
+</ul>
+<p>Bullying does not include respectful disagreement, robust debate, or the fair enforcement of meeting rules and Party procedures.</p>
+<p><strong>Professionalism and Integrity</strong></p>
+<p>All Party members, officers, staff, volunteers, candidates, and participants in Party activities are expected to conduct themselves professionally and to act with honesty and integrity in all Party-related activities. This includes refraining from disruptive behavior, dishonesty, or any action that undermines the mission of the Democratic Party. We expect Party leaders and officers to set the highest example of ethical conduct and to maintain transparency in the exercise of their responsibilities. Unlawful, dishonest, deceitful, violent, or threatening conduct will be treated as serious violations of this Code of Conduct.</p>
+<p>Before making any communication---whether in person, by email, on social media, or through the press---participants should consider:</p>
+<ul>
+<li><p>Could this be taken as harassment or intimidation?</p></li>
+<li><p>Is it truthful?</p></li>
+<li><p>Is it compliant with law and Party rules and bylaws?</p></li>
+<li><p>Does it align with the spirit of the Party's goals?</p></li>
+<li><p>If uncertain, seek guidance from Party leadership before acting.</p></li>
+</ul>
+<p><strong>Retaliation Prohibited</strong></p>
+<p>Retaliation for good faith reporting of behavior that may violate this Code of Conduct, or for participating in an investigation into a potential violation, is prohibited. Retaliation may include, but is not limited to, exclusion from meetings, (ex. regularly muting someone and/or not recognizing someone whose hand is raised asking to speak) committees, or opportunities for advancement and full participation, ostracism, disparagement, or other conduct that may discourage engagement with the Party, or that would be reasonably likely to deter a reasonable person from reporting a violation of this Code or participating in an investigation of a potential violation. Retaliation against any individual who files a grievance, participates in an investigation, or provides testimony is strictly prohibited and may result in disciplinary action.</p>
+<p><strong>Conflict of Interest</strong></p>
+<p>Individuals in leadership roles must avoid real or perceived conflicts of interest. This includes, but is not limited to, financial interests, personal relationships, or outside commitments that could compromise their impartiality in Party decisions. Conflicts should be promptly disclosed.</p>
+<p><strong>Commitment to a Safe Environment</strong></p>
+<p>The Florida Democratic Party is dedicated to maintaining spaces---whether in person or online---where all participants are safe, welcomed, and encouraged to participate respectfully in debate. Physical aggression and threats of violence, where prohibited at Party events, are strictly prohibited.</p>
+<p>Possession of weapons at Party events or Party offices may be prohibited, and shall not apply to law enforcement and hired armed security officers.</p>
+<p><strong>Alcohol, Drugs, and Safety</strong></p>
+<p>At Party events where alcohol is served, consumption must be moderate and in accordance with the law. Illegal substances are prohibited at all Party functions. We are committed to maintaining a safe environment and require all participants to act responsibly and to prioritize the safety and well-being of others.</p>
+<p><strong>Affirmation of Commitment</strong></p>
+<p>By participating in Party activities, individuals affirm their commitment to this Code of Conduct and to the values of respect, equity, and inclusion that define our Party. Together, we will maintain an environment where every voice can be heard and where the principles of democracy and decency guide our actions.</p>
+<p><strong>Shared Responsibility</strong></p>
+<p>The success of this Code depends on the collective commitment of all members and leaders to uphold its principles. We encourage every participant to model respectful behavior, challenge conduct that undermines these standards, and support those who exemplify our Party's values. By working together with integrity, we strengthen our organization, protect its reputation, and advance the democratic ideals we strive to achieve.</p>
+  </div>
+</div>
+<div class="section" id="ta-transition-addendum">
+  <button class="sec-toggle" onclick="toggleSec(this)" aria-expanded="false">
+    <span class="sec-num">TA</span>
+    <span class="sec-title">Transition Addendum</span>
+    <span class="chevron" aria-hidden="true">&#x25BE;</span>
+  </button>
+  <div class="sec-body">
+<ol>
+<li><p>Within ten (10) days following the adoption of these Amendments to the FDP Charter and Bylaws the Florida Democratic Party will send to each county chair, state caucus president, and all state executive committee members the newly amended Charter &amp; Bylaws, and a copy of the Transition and Effective Dates Addendum as adopted.</p></li>
+<li><p>Within ninety (90) days following adoption of the Amendments, each county Democratic Executive Committee ("DEC") shall amend its bylaws as needed to conform with adopted Amendments, including the effective dates thereof.</p></li>
+</ol>
+  </div>
+</div>
+  </div>
+</main>
+
+<button id="back-top" aria-label="Back to top">&#x25B2;</button>
+<script>
+  function toggleSec(btn) {
+    var body = btn.nextElementSibling;
+    var open = body.classList.contains('open');
+    body.classList.toggle('open', !open);
+    btn.setAttribute('aria-expanded', String(!open));
+  }
+
+  var hamburger = document.getElementById('hamburger');
+  var sidebar   = document.getElementById('sidebar');
+  var overlay   = document.getElementById('overlay');
+
+  function openNav()  { sidebar.classList.add('open'); overlay.classList.add('show'); hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeNav() { sidebar.classList.remove('open'); overlay.classList.remove('show'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+
+  hamburger.addEventListener('click', function() { sidebar.classList.contains('open') ? closeNav() : openNav(); });
+  overlay.addEventListener('click', closeNav);
+  document.querySelectorAll('.nav-link').forEach(function(a) {
+    a.addEventListener('click', function() { if (window.innerWidth <= 860) closeNav(); });
+  });
+
+  var prog = document.getElementById('prog');
+  var bt   = document.getElementById('back-top');
+
+  function onScroll() {
+    var s = document.documentElement.scrollTop || document.body.scrollTop;
+    var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    prog.style.width = (h > 0 ? (s/h)*100 : 0) + '%';
+    bt.classList.toggle('show', s > 320);
+    // active nav
+    var cur = '';
+    allSecs.forEach(function(el) { if (el.offsetTop <= s + 110) cur = el.id; });
+    navLinks.forEach(function(a) { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+  }
+
+  bt.addEventListener('click', function() { window.scrollTo({top:0,behavior:'smooth'}); });
+
+  var allSecs  = Array.from(document.querySelectorAll('.section[id], .doc-part-header[id]'));
+  var navLinks = Array.from(document.querySelectorAll('.nav-link'));
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Sidebar search
+  document.getElementById('nav-search').addEventListener('input', function() {
+    var q = this.value.toLowerCase().trim();
+    navLinks.forEach(function(a) {
+      a.parentElement.style.display = (!q || a.textContent.toLowerCase().includes(q)) ? '' : 'none';
+    });
+    document.querySelectorAll('.nav-label').forEach(function(lbl) {
+      var ul = lbl.nextElementSibling;
+      var any = ul && Array.from(ul.querySelectorAll('li')).some(function(li) { return li.style.display !== 'none'; });
+      lbl.style.display = any ? '' : 'none';
+    });
+  });
+
+  // Smooth scroll offset
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var el = document.getElementById(this.getAttribute('href').slice(1));
+      if (!el) return;
+      e.preventDefault();
+      var off = window.innerWidth <= 860 ? 64 : 14;
+      window.scrollTo({top: el.offsetTop - off, behavior:'smooth'});
+    });
+  });
+
+  onScroll();
+
+  // ── Classify subsection paragraphs ─────────────────────────────────────
+  (function() {
+    // Patterns for the bold opening label of a paragraph
+    var SECTION_RE   = /^SECTION\s+\d+[\.\s]/i;
+    var SUB_RE       = /^\d+\.\d+(\.\d+)*\s/;        // e.g.  1.2  or  5.10.4.1
+    var DEEP_RE      = /^\d+\.\d+\.\d+(\.\d+)?\s/;   // e.g.  1.1.1  or  5.10.4.1
+
+    document.querySelectorAll('.sec-body p').forEach(function(p) {
+      var strong = p.querySelector('strong:first-child');
+      if (!strong) return;
+      var txt = strong.textContent.trim();
+
+      if (SECTION_RE.test(txt)) {
+        p.classList.add('is-section');
+      } else if (DEEP_RE.test(txt)) {
+        p.classList.add('is-deep');
+      } else if (SUB_RE.test(txt)) {
+        p.classList.add('is-sub');
+      }
+    });
+
+    // Also mark plain paragraph continuations that immediately follow a sub/deep
+    // (no strong tag, sits after an is-sub or is-deep)
+    document.querySelectorAll('.sec-body').forEach(function(body) {
+      var children = Array.from(body.children);
+      for (var i = 1; i < children.length; i++) {
+        var prev = children[i - 1];
+        var cur  = children[i];
+        if (cur.tagName === 'P' && !cur.classList.length) {
+          if (prev.classList.contains('is-sub') || prev.classList.contains('is-deep') ||
+              prev.classList.contains('is-continuation')) {
+            cur.classList.add('is-continuation');
+          }
+        }
+      }
+    });
+  })();
+
+</script>
+</body>
+</html>
